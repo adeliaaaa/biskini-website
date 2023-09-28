@@ -1,0 +1,78 @@
+:root {
+	--background: #f8f8fc;
+
+	--primary-1: #7069bd;
+	--primary-2: #746cc3;
+	--primary-3: #9089cf;
+	--primary-4: #aca7db;
+	--primary-5: #c7c4e7;
+	--primary-6: #e3e2f3;
+
+	--secondary-1: #e88072;
+	--secondary-2: #f28475;
+	--secondary-3: #f59d91;
+	--secondary-4: #f7b5ac;
+	--secondary-5: #facec8;
+	--secondary-6: #fce6e3;
+	--secondary-7: #fdf3f1;
+
+	--neutral-1: #8d92a5;
+	--neutral-2: #71778e;
+	--neutral-3: #40446f;
+	--neutral-4: #363f51;
+	--neutral-5: #283148;
+
+	--neutral2-6: #aaadbb;
+	--neutral2-7: #c6c9d2;
+	--neutral2-8: #e3e4e8;
+	--neutral2-9: #f8f8fc;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: var(--background);
+}
+
+h1 {
+	font-family: "Anton", sans-serif;
+	font-size: 96px;
+}
+
+h2 {
+	font-family: sans-serif;
+	font-size: 64px;
+}
+
+h3 {
+	font-family: "Anton", sans-serif;
+	font-size: 36px;
+}
+
+h4 {
+	font-family: "Anton", sans-serif;
+	font-size: 32px;
+}
+
+h5 {
+	font-family: "Anton", sans-serif;
+	font-size: 24px;
+}
+
+p {
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.subtitle {
+	font-family: "Inter", sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+.button-text {
+	font-family: "Inter", sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+}
