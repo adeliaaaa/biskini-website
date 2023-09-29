@@ -7,8 +7,6 @@ function Navbar() {
 	const location = useLocation();
 
 	useEffect(() => {
-		// console.log("Location changed", location);
-
 		const links = document.querySelectorAll(".right-navbar a");
 		links.forEach((link) => {
 			link.classList.remove("active");
