@@ -4,7 +4,7 @@ footer {
 
 	padding: 100px 120px 100px 120px;
 
-	background: var(--Secondary-7, #fdf3f1);
+	background: var(--secondary-7, #fdf3f1);
 	box-shadow: 0px -20px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -16,7 +16,7 @@ footer {
 }
 
 .contact-us-text {
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 	font-family: Anton;
 	font-size: 48px;
 	font-style: normal;
@@ -55,7 +55,7 @@ br {
 }
 
 .saran-text {
-	color: var(--Neutral-4, #363f51);
+	color: var(--neutral-4, #363f51);
 }
 
 .saran-field {
@@ -67,12 +67,12 @@ br {
 
 .saran-field > input {
 	border-radius: 10px;
-	background: var(--Neutral-8, #e3e4e8);
+	background: var(--neutral-8, #e3e4e8);
 	padding: 15px 20px;
 	border: none;
 	outline: none;
 
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 	font-family: "Inter";
 	font-size: 16px;
 	font-style: normal;
@@ -82,12 +82,12 @@ br {
 
 .saran-field > textarea {
 	border-radius: 10px;
-	background: var(--Neutral-8, #e3e4e8);
+	background: var(--neutral-8, #e3e4e8);
 	padding: 15px 20px;
 	border: none;
 	outline: none;
 
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 	font-family: "Inter";
 	font-size: 16px;
 	font-style: normal;

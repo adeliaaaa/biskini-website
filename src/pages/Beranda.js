@@ -48,24 +48,78 @@ function Beranda() {
 				<h2>Menu</h2>
 				<div className="menu-feature-container">
 					<Link to="/bus" className="card-container">
-						<img src={InfoBusImage} alt="Info Bus" height="100px" />
+						<img src={InfoBusImage} alt="Info Bus" height="96px" />
 						<div className="text1">Info Bus</div>
 					</Link>
 					<Link to="/rute" className="card-container">
-						<img src={RuteBusImage} alt="Info Bus" height="100px" />
+						<img src={RuteBusImage} alt="Rute Bus" height="96px" />
 						<div className="text1">Rute</div>
 					</Link>
 					<Link to="/live" className="card-container">
-						<img src={LiveBusImage} alt="Info Bus" height="100px" />
+						<img src={LiveBusImage} alt="Live Bus" height="96px" />
 						<div className="text1">Live Bus</div>
 					</Link>
 					<Link to="/bantuan" className="card-container">
-						<img src={BantuanBusImage} alt="Info Bus" height="100px" />
+						<img src={BantuanBusImage} alt="Bantuan" height="96px" />
 						<div className="text1">Bantuan</div>
 					</Link>
 				</div>
 			</div>
-			<h3>fitur</h3>
+			<div className="fitur-section">
+				<div className="fitur-description">
+					<div className="fitur-description1">BARU DI BISKINI?</div>
+					<h2>
+						KENALI <span>FITUR</span> YANG TERSEDIA
+					</h2>
+					<div className="text1">
+						Temukan lokasi tujuanmu dan kami akan membantu merekomendasikan rute
+						terbaik untukmu.
+					</div>
+				</div>
+				<div className="fitur-container">
+					<div className="card-container">
+						<div className="description">
+							<img src={InfoBusImage} alt="Info Bus" height="64px" />
+							<h3>Info Bus</h3>
+							<div className="text3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit
+							</div>
+						</div>
+						<div className="description-detail">Lihat detail </div>
+					</div>
+					<div className="card-container">
+						<div className="description">
+							<img src={RuteBusImage} alt="Rute Bus" height="64px" />
+							<h3>Rute Bus</h3>
+							<div className="text3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit
+							</div>
+						</div>
+						<div className="description-detail">Lihat detail </div>
+					</div>
+					<div className="card-container">
+						<div className="description">
+							<img src={LiveBusImage} alt="Live Bus" height="64px" />
+							<h3>Live Bus</h3>
+							<div className="text3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit
+							</div>
+						</div>
+						<div className="description-detail">Lihat detail </div>
+					</div>
+					<div className="card-container">
+						<div className="description">
+							<img src={BantuanBusImage} alt="Bantuan Bus" height="64px" />
+							<h3>Bantuan Bus</h3>
+							<div className="text3">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit
+							</div>
+						</div>
+						<div className="description-detail">Lihat detail </div>
+					</div>
+				</div>
+			</div>
+
 			<h3>stay update </h3>
 			<Footer />
 		</>

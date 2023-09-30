@@ -5,7 +5,7 @@
 	justify-content: space-between;
 
 	border-radius: 0px 0px 50px 50px;
-	background: var(--Secondary-7, #fdf3f1);
+	background: var(--secondary-7, #fdf3f1);
 	box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -18,7 +18,7 @@
 }
 
 .explore-heading-color1 {
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 }
 
 .explore-heading-color2 {
@@ -26,7 +26,7 @@
 }
 
 .explore-description {
-	color: var(--Neutral-4, #363f51);
+	color: var(--neutral-4, #363f51);
 }
 
 .explore-search-container {
@@ -36,7 +36,7 @@
 
 	border-radius: 10px;
 	border: 1px solid var(--background, #f8f8fc);
-	background: var(--Neutral-3, #40446f);
+	background: var(--neutral-3, #40446f);
 }
 
 .explore-search-input {
@@ -105,12 +105,15 @@
 }
 
 .menu-section > h2 {
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 }
 
 .menu-feature-container {
 	display: flex;
 	gap: 10px;
+
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .menu-feature-container .card-container {
@@ -122,12 +125,12 @@
 	gap: 19px;
 
 	border-radius: 20px;
-	background: var(--Neutral-8, #e3e4e8);
+	background: var(--neutral-8, #e3e4e8);
 	text-decoration: none;
 }
 
 .menu-feature-container .card-container > div {
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 	min-width: 131px;
 
 	display: flex;
@@ -135,12 +138,114 @@
 }
 
 .menu-feature-container .card-container:hover {
-	background: var(--Neutral-7, #d1d2d6);
+	background: var(--neutral-7, #d1d2d6);
 	cursor: pointer;
 }
 
 .menu-feature-container .card-container:active {
-	background: var(--Neutral-7, #d1d2d6);
+	background: var(--neutral-7, #d1d2d6);
 	cursor: pointer;
 	transform: translateY(1px);
+}
+
+/* section fitur */
+.fitur-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 100px 120px;
+
+	gap: 50px;
+
+	border-radius: 50px;
+	background: var(--neutral-5, #283148);
+}
+
+.fitur-description {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	gap: 40px;
+}
+
+.fitur-description1 {
+	color: var(--secondary-4, #f7b5ac);
+	font-family: "Anton";
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: 0.96px;
+
+	text-align: center;
+}
+
+.fitur-description > h2 {
+	color: var(--background, #f8f8fc);
+	text-align: center;
+}
+
+.fitur-description > h2 > span {
+	color: var(--secondary-4, #f7b5ac);
+}
+
+.fitur-description .text1 {
+	color: var(--neutral-8, #e3e4e8);
+	text-align: center;
+
+	max-width: 750px;
+}
+
+.fitur-container {
+	display: flex;
+	padding: 0px 6px;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: flex-start;
+	gap: 50px;
+	align-self: stretch;
+	flex-wrap: wrap;
+}
+
+.fitur-container .card-container {
+	display: flex;
+	/* height: 220px; */
+	min-height: 220px;
+	padding: 40px;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	border-radius: 20px;
+	background: var(--Neutral-3, #40446f);
+}
+
+.fitur-container .card-container .description {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+
+	color: var(--neutral-8, #e3e4e8);
+}
+
+.fitur-container .card-container .description > h3 {
+	color: var(--background-main, #f8f8fc);
+	text-align: center;
+}
+
+.fitur-container .card-container .text3 {
+	max-width: 200px;
+	text-align: center;
+}
+
+.fitur-container .card-container .description-detail {
+	color: var(--secondary-6, #fce6e3);
+	text-align: center;
+
+	font-family: "Inter";
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
 }

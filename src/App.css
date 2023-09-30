@@ -22,10 +22,10 @@
 	--neutral-4: #363f51;
 	--neutral-5: #283148;
 
-	--neutral2-6: #aaadbb;
-	--neutral2-7: #c6c9d2;
-	--neutral2-8: #e3e4e8;
-	--neutral2-9: #f8f8fc;
+	--neutral-6: #aaadbb;
+	--neutral-7: #c6c9d2;
+	--neutral-8: #e3e4e8;
+	--neutral-9: #f8f8fc;
 }
 
 body {
@@ -62,6 +62,8 @@ h3 {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 100%;
+
+	margin: 0;
 }
 
 h4 {

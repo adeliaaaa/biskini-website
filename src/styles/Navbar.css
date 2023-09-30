@@ -35,7 +35,7 @@
 	align-items: center;
 	height: 100%;
 
-	color: var(--Neutral-5, #283148);
+	color: var(--neutral-5, #283148);
 	font-family: "Inter";
 	font-size: 16px;
 	font-style: normal;
@@ -45,7 +45,7 @@
 }
 
 .right-navbar > a:hover {
-	color: var(--Primary-1, #7069bd);
+	color: var(--primary-1, #7069bd);
 
 	font-weight: 700;
 }
