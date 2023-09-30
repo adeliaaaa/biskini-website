@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../components/Footer";
 
 function Beranda() {
 	return (
@@ -8,17 +9,11 @@ function Beranda() {
 			<h1>Beranda</h1>
 			<h1>Beranda</h1>
 			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
+			{/* <div>Explore</div>
+			<div>Menu</div>
+			<div>Kenali fitur yang tersedia</div>
+			<div>Stay update</div> */}
+			<Footer />
 		</>
 	);
 }
