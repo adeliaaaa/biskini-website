@@ -229,17 +229,9 @@
 	color: var(--neutral-8, #e3e4e8);
 }
 
-.fitur-container .card-container .description > h3 {
-	color: var(--background-main, #f8f8fc);
-	text-align: center;
-}
+.fitur-container .card-container > a {
+	text-decoration: none;
 
-.fitur-container .card-container .text3 {
-	max-width: 200px;
-	text-align: center;
-}
-
-.fitur-container .card-container .description-detail {
 	color: var(--secondary-6, #fce6e3);
 	text-align: center;
 
@@ -248,4 +240,22 @@
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
+}
+
+.fitur-container .card-container > a:hover {
+	color: var(--secondary-5, #f8f8fc);
+}
+
+.fitur-container .card-container > a:active {
+	transform: translateY(1px);
+}
+
+.fitur-container .card-container .description > h3 {
+	color: var(--background-main, #f8f8fc);
+	text-align: center;
+}
+
+.fitur-container .card-container .text3 {
+	max-width: 200px;
+	text-align: center;
 }

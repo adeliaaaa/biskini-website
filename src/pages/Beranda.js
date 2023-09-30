@@ -85,7 +85,7 @@ function Beranda() {
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit
 							</div>
 						</div>
-						<div className="description-detail">Lihat detail </div>
+						<Link to="/bus">Lihat detail -{">"} </Link>
 					</div>
 					<div className="card-container">
 						<div className="description">
@@ -95,7 +95,7 @@ function Beranda() {
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit
 							</div>
 						</div>
-						<div className="description-detail">Lihat detail </div>
+						<Link to="/rute">Lihat detail -{">"} </Link>
 					</div>
 					<div className="card-container">
 						<div className="description">
@@ -105,7 +105,7 @@ function Beranda() {
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit
 							</div>
 						</div>
-						<div className="description-detail">Lihat detail </div>
+						<Link to="/live">Lihat detail -{">"} </Link>
 					</div>
 					<div className="card-container">
 						<div className="description">
@@ -115,7 +115,7 @@ function Beranda() {
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit
 							</div>
 						</div>
-						<div className="description-detail">Lihat detail </div>
+						<Link to="/bantuan">Lihat detail -{">"} </Link>
 					</div>
 				</div>
 			</div>
