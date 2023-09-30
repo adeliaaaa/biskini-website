@@ -1,11 +1,11 @@
 import React from "react";
 
-function Beli() {
+function Live() {
 	return (
 		<>
-			<h1>Beli</h1>
+			<h1>Live</h1>
 		</>
 	);
 }
 
-export default Beli;
+export default Live;

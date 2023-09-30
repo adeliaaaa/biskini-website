@@ -4,8 +4,8 @@ import Footer from "../components/Footer";
 function Beranda() {
 	return (
 		<>
-			<h1>Beranda</h1>
-			<h1>Beranda</h1>
+			<h1>Berandaaaaaaaaaaaaaaaa</h1>
+			<h1>Berandaaaaaaaaaaaaaaaa</h1>
 			<h1>Beranda</h1>
 			<h1>Beranda</h1>
 			<h1>Beranda</h1>

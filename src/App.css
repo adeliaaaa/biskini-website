@@ -89,7 +89,7 @@ button {
 
 	color: var(--background, #f8f8fc);
 
-	font-family: Inter;
+	font-family: "Inter";
 	font-size: 20px;
 	font-style: normal;
 	font-weight: 700;

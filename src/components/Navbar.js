@@ -24,17 +24,17 @@ function Navbar() {
 					<Link to="/" id="/">
 						Beranda
 					</Link>
-					<Link to="/beli" id="/beli">
-						Beli
-					</Link>
 					<Link to="/bus" id="/bus">
 						Bus
 					</Link>
 					<Link to="/rute" id="/rute">
 						Rute
 					</Link>
-					<Link to="/jadwal" id="/jadwal">
-						Jadwal
+					<Link to="/live" id="/live">
+						Live
+					</Link>
+					<Link to="/bantuan" id="/bantuan">
+						Bantuan
 					</Link>
 				</div>
 			</nav>
