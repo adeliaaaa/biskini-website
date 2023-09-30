@@ -50,8 +50,10 @@ h2 {
 	font-size: 48px;
 	font-style: normal;
 	font-weight: 400;
-	line-height: 100%; /* 48px */
+	line-height: 100%;
 	text-transform: uppercase;
+
+	margin: 0;
 }
 
 h3 {
