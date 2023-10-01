@@ -14,11 +14,15 @@ function Navbar() {
 		});
 	}, [location]);
 
+	const toHomePage = () => {
+		window.location.href = "/";
+	};
+
 	return (
 		<>
 			<nav className="navbar">
 				<div className="left-navbar">
-					<img src={Logo} alt="logo" border="0" width="64px" height="64px" />
+					<img src={Logo} alt="logo" onClick={toHomePage} />
 				</div>
 				<div className="right-navbar">
 					<Link to="/" id="/">
@@ -36,6 +40,9 @@ function Navbar() {
 					<Link to="/bantuan" id="/bantuan">
 						Bantuan
 					</Link>
+				</div>
+				<div className="right-navbar2">
+					<img src={Logo} alt="logo" />
 				</div>
 			</nav>
 		</>

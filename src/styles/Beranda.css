@@ -4,6 +4,8 @@
 	display: flex;
 	justify-content: space-between;
 
+	gap: 50px;
+
 	border-radius: 0px 0px 50px 50px;
 	background: var(--secondary-7, #fdf3f1);
 	box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.1);
@@ -12,6 +14,8 @@
 .left-side-explore {
 	display: flex;
 	flex-direction: column;
+
+	align-items: left;
 	gap: 40px;
 
 	max-width: 440px;
@@ -84,6 +88,12 @@
 
 .right-side-explore > img {
 	border-radius: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+	.explore-section {
+		justify-content: center;
+	}
 }
 
 @media only screen and (max-width: 1065px) {
@@ -217,7 +227,7 @@
 	align-items: center;
 
 	border-radius: 20px;
-	background: var(--Neutral-3, #40446f);
+	background: var(--neutral-3, #40446f);
 }
 
 .fitur-container .card-container .description {

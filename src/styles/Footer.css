@@ -10,8 +10,15 @@ footer {
 
 @media only screen and (max-width: 900px) {
 	footer {
+		display: flex;
+
 		flex-direction: column;
 		gap: 50px;
+
+		justify-content: center;
+
+		flex-wrap: wrap;
+		align-content: center;
 	}
 }
 
@@ -25,15 +32,19 @@ footer {
 	letter-spacing: 1.92px;
 }
 
-.left-side {
+footer .left-side {
 	display: flex;
 	flex-direction: column;
 
 	gap: 40px;
+
+	flex-wrap: wrap;
 }
 
 .info > .text2 {
 	line-height: 150%;
+
+	overflow-wrap: anywhere;
 }
 
 br {
@@ -46,12 +57,18 @@ br {
 	height: 10px;
 }
 
-.right-side {
+footer .right-side {
 	display: flex;
 	flex-direction: column;
 
 	gap: 40px;
 	min-width: 470px;
+}
+
+@media only screen and (max-width: 900px) {
+	footer .right-side {
+		min-width: 146px;
+	}
 }
 
 .saran-text {

@@ -16,6 +16,16 @@
 	height: fit-content;
 }
 
+.left-navbar > img {
+	width: 64px;
+	border: 0;
+	cursor: pointer;
+}
+
+.right-navbar2 {
+	display: none;
+}
+
 .right-navbar {
 	display: flex;
 	justify-content: flex-end;
@@ -51,15 +61,25 @@
 }
 
 .right-navbar > a.active {
-	/* color: var(--Primary-1, #7069bd); */
-
 	font-weight: 700;
 
 	box-shadow: inset 0px -6px #f28475;
 }
 
 @media only screen and (max-width: 768px) {
+	.navbar {
+		padding: 0% 20% 0% 20%;
+	}
 	.right-navbar {
 		display: none;
+	}
+	.right-navbar2 {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 568px) {
+	.navbar {
+		padding: 0% 10% 0% 10%;
 	}
 }
