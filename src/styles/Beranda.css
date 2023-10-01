@@ -387,3 +387,11 @@
 
 	text-decoration: none;
 }
+
+.recomendation-frame .update-card-container > a:hover {
+	color: var(--secondary-1, #f8f8fc);
+}
+
+.recomendation-frame .update-card-container > a:active {
+	transform: translateY(1px);
+}
