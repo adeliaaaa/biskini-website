@@ -79,7 +79,9 @@ h5 {
 	font-size: 24px;
 	font-style: normal;
 	font-weight: 400;
-	line-height: 100%; /* 24px */
+	line-height: 100%;
+
+	margin: 0;
 }
 
 p {

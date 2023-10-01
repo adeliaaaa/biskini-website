@@ -8,6 +8,7 @@ import InfoBusImage from "../assets/InfoBus.png";
 import RuteBusImage from "../assets/RuteBus.png";
 import LiveBusImage from "../assets/LiveBus.png";
 import BantuanBusImage from "../assets/BantuanBus.png";
+import UpdateBusImage from "../assets/UpdateBus.png";
 import "../styles/Beranda.css";
 
 function Beranda() {
@@ -73,7 +74,7 @@ function Beranda() {
 					</h2>
 					<div className="text1">
 						Temukan lokasi tujuanmu dan kami akan membantu merekomendasikan rute
-						terbaik untukmu.
+						terbaik untukmu
 					</div>
 				</div>
 				<div className="fitur-container">
@@ -119,8 +120,58 @@ function Beranda() {
 					</div>
 				</div>
 			</div>
-
-			<h3>stay update </h3>
+			<div className="update-section">
+				<div className="update-title">
+					<div className="update-title-1">STAY UPDATED</div>
+					<h2>
+						<span>JELAJAHI</span> BERITA TERKINI
+					</h2>
+					<div className="text1">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+						eiusmod tempor incididunt ut labore et dolore magna aliqua
+					</div>
+				</div>
+				<div className="update-content">
+					<div className="recomendation-frame">
+						<div className="update-card-container">
+							<img src={UpdateBusImage} alt="Update Bus" />
+							<div className="update-card-description">
+								<h5>Penggabungan BUMN Transportasi Jalan</h5>
+								<div className="text3">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit
+								</div>
+							</div>
+							<Link to="https://jadwalbis.com/" target="_blank">
+								Lihat detail -{">"}{" "}
+							</Link>
+						</div>
+						<div className="update-card-container">
+							<img src={UpdateBusImage} alt="Update Bus" />
+							<div className="update-card-description">
+								<h5>Penggabungan BUMN Transportasi Jalan</h5>
+								<div className="text3">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit
+								</div>
+							</div>
+							<Link to="https://jadwalbis.com/" target="_blank">
+								Lihat detail -{">"}{" "}
+							</Link>
+						</div>
+						<div className="update-card-container">
+							<img src={UpdateBusImage} alt="Update Bus" />
+							<div className="update-card-description">
+								<h5>Penggabungan BUMN Transportasi Jalan</h5>
+								<div className="text3">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit
+								</div>
+							</div>
+							<Link to="https://jadwalbis.com/" target="_blank">
+								Lihat detail -{">"}{" "}
+							</Link>
+						</div>
+					</div>
+				</div>
+			</div>
 			<Footer />
 		</>
 	);
