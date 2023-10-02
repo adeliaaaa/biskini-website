@@ -1,7 +1,7 @@
 import React from "react";
 import BusWhiteIconImage from "../../assets/BusWhiteIcon.png";
 
-function ChooseSchedule() {
+function ChooseSchedule({selectScheduleAction}) {
     return (
         <div className="choose-schedule-item">
             <div className="choose-schedule-date-price">
@@ -20,7 +20,7 @@ function ChooseSchedule() {
             </div>
             <div className="select-seat">
                 <p>Tersedia 6 Kursi</p>
-                <button className="sm-btn">PILIH KURSI</button>
+                <button className="sm-btn" onClick={() => selectScheduleAction(0)}>PILIH KURSI</button>
             </div>
         </div>
     )
