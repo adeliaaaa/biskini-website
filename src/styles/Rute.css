@@ -1,29 +1,40 @@
+main {
+    display: flex;
+    position: relative;
+}
+
 .route {
     width: 50%;
     max-width: 390px;
+    position: fixed;
+}
+
+.second-container {
+    width: 100%;
+    margin-left: 390px;
 }
 
 .route-info {
     width: 100%;
 }
 
-.route-heading {
+.page-heading {
     display: flex;
     gap: 10px;
     margin: 20px;
 }
 
-.route-heading h3 {
+.page-heading h3 {
     font-size: 36px;
     margin-bottom: 0;
     text-transform: uppercase;
 }
 
-.route-heading-color1 {
+.page-heading-color1 {
     color: var(--neutral-5);
 }
 
-.route-heading-color2 {
+.page-heading-color2 {
     color: var(--primary-2);
 }
 
@@ -68,6 +79,11 @@
 
 .terminal-change-icon {
     width: 28px;
+}
+
+.route-data {
+    height: calc(100vh - 220px);
+    overflow-y: scroll;
 }
 
 
@@ -198,22 +214,22 @@
     overflow-y: scroll;
 }
 
-.bus-line::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 4px;
 }
 
 /* Track */
-.bus-line::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: var(--background);
 }
 
 /* Handle */
-.bus-line::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #888;
 }
 
 /* Handle on hover */
-.bus-line::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
 
@@ -320,4 +336,88 @@
     font-size: 24px;
     font-weight: 900;
     color: var(--secondary-3);
+}
+
+.date-picker-field {
+    font-family: "Inter";
+    flex: 1;
+    background-color: var(--secondary-7);
+    padding: 20px;
+}
+
+.date-picker-field form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.date-picker-field label {
+    font-size: 14px;
+    color: var(--neutral-2);
+    font-weight: 500;
+}
+
+.input-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.input-item input {
+    background-color: var(--neutral-8);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--neutral-5);
+    font-family: "Inter";
+    font-weight: 600;
+}
+
+button {
+    width: 100%;
+}
+
+.schedule-detail {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-7);
+    flex: 1;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px 20px 20px;
+}
+
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.schedule-item p {
+    font-size: 14px;
+    color: var(--neutral-2);
+    margin: 0;
+}
+
+.schedule-item-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    border-left: 4px solid var(--secondary-2);
+}
+
+.schedule-item-detail p {
+    color: var(--neutral-5);
+    font-weight: 500;
+}
+
+.font-bold {
+    font-weight: bold;
 }
