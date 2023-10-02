@@ -11,7 +11,9 @@ main {
 
 .second-container {
     width: 100%;
-    margin-left: 390px;
+    margin-left: min(50%, 390px);
+    min-height: calc(100vh - 59px);
+    display: flex;
 }
 
 .route-info {
@@ -83,7 +85,7 @@ main {
 
 .route-data {
     height: calc(100vh - 220px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 
@@ -211,7 +213,7 @@ main {
     padding: 0 20px;
     margin: 20px 0;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
@@ -420,4 +422,175 @@ button {
 
 .font-bold {
     font-weight: bold;
+}
+
+.maps {
+    width: 100%;
+    height: 100%;
+}
+
+.maps img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.seats-container {
+    background-color: var(--primary-7);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.seats-container p {
+    margin: 0;
+}
+
+.color-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.color-desc p {
+    font-size: 14px;
+    color: var(--neutral-2);
+    text-align: center;
+}
+
+.color-desc-detail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-desc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-desc-item p {
+    color: var(--neutral-5);
+}
+
+.color-desc-item img {
+    width: 13px;
+    height: 13px;
+    object-fit: cover;
+}
+
+.seats {
+    background-color: var(--neutral-8);
+}
+
+.seats {
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.seats p {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--background);
+}
+
+.seats-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 128px;
+}
+
+.seats-col {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.seat {
+    width: 64px;
+    height: 64px;
+    background-color: var(--neutral-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.seat.chosen {
+    background-color: var(--secondary-2);
+}
+
+.seat.empty {
+    background-color: var(--primary-2);
+}
+
+.seat.driver {
+    background-color: var(--neutral-7);
+    width: fit-content;
+    height: fit-content;
+    padding: 15px 20px;
+}
+
+.choose-schedule-container {
+    flex: 1;
+    background-color: var(--primary-7);
+}
+
+.choose-schedule {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.choose-schedule p {
+    margin: 0;
+}
+
+.choose-schedule-item {
+    padding: 20px;
+    background-color: var(--neutral-8);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choose-schedule-date-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.choose-schedule-date-price p {
+    font-size: 20px;
+}
+
+.select-seat {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.select-seat p {
+    font-size: 16px;
+    color: var(--neutral-5);
+}
+
+.select-seat .sm-btn{
+    width: fit-content;
+    font-size: 16px;
+}
+
+.bus-line-info {
+    background-color: var(--secondary-7);
 }

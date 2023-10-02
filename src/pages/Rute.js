@@ -6,9 +6,17 @@ import ArrowRightBoldIconImage from "../assets/ArrowRightBoldIcon.png";
 import BusIconImage from "../assets/BusIcon.png";
 import BusWhiteIconImage from "../assets/BusWhiteIcon.png";
 import BulletIconImage from "../assets/BulletIcon.png";
+import BulletNeutralFilledIconImage from "../assets/BulletNeutralFilled.png"
+import BulletPrimaryFilledIconImage from "../assets/BulletPrimaryFilled.png"
+import BulletSecondaryFilledIconImage from "../assets/BulletSecondaryFilled.png"
 import BulletFilledIconImage from "../assets/BulletFilledIcon.png";
+import MapRouteDummyImage from "../assets/MapRouteDummy.png"
 import "../styles/Rute.css";
 import routeData from "../data/route.json"
+import BusLine from "../components/route/BusLine";
+import ChooseSchedule from "../components/route/ChooseSchedule";
+import ChooseSeat from "../components/route/ChooseSeat";
+import Maps from "../components/route/Maps";
 
 function Rute() {
 	return (
@@ -74,50 +82,17 @@ function Rute() {
 									</div>
 								</div>
 							</div>
-							{/* <div className="terminal-change bg-none">
+							<div className="terminal-change bg-none">
 								<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
 								<div className="terminal-change-source bg-none">
 									<p>{routeData.location_origin}</p>
 									<p>{routeData.location_destination}</p>
 								</div>
-							</div> */}
+							</div>
 						</div>
 
 						{/* VIEW RUTE 2 */}
-						{/* <div className="bus-line">
-							<div className="bus-line-item">
-								<img src={BulletFilledIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-							<div className="bus-line-item">
-								<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-								<p>Halte Metro</p>
-							</div>
-						</div>
+						<BusLine />
 						<div className="trip-info">
 							<div className="trip-time">
 								<div className="title">
@@ -140,7 +115,7 @@ function Rute() {
 								<p className="trip-price-item">Rp10.000 - Rp15.000</p>
 							</div>
 							<button>PILIH JADWAL</button>
-						</div> */}
+						</div>
 
 						{/* VIEW RUTE 3 */}
 						{/* <div className="date-picker-field">
@@ -157,7 +132,8 @@ function Rute() {
 							</form>
 						</div> */}
 
-						<div className="schedule-detail">
+						{/* VIEW RUTE 4 */}
+						{/* <div className="schedule-detail">
 							<div className="page-heading">
 								<h3 className="page-heading-color1">PILIHAN</h3>
 								<h3 className="page-heading-color2">JADWAL</h3>
@@ -185,36 +161,53 @@ function Rute() {
 								</div>
 								<button>BAYAR</button>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className="second-container">
-					<div className="maps">
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
-						<p>hahahha</p>
+					{/* <Maps /> */}
+					{/* <div className="seats-container">
+						<div className="page-heading">
+							<h3 className="page-heading-color1">PILIHAN</h3>
+							<h3 className="page-heading-color2">KURSI</h3>
+						</div>
+						<div className="color-desc">
+							<p>Keterangan Warna</p>
+							<div className="color-desc-detail">
+								<div className="color-desc-item">
+									<img src={BulletSecondaryFilledIconImage} alt="Bullet Filled Icon" />
+									<p>Dipilih</p>
+								</div>
+								<div className="color-desc-item">
+									<img src={BulletPrimaryFilledIconImage} alt="Bullet Filled Icon" />
+									<p>Kosong</p>
+								</div>
+								<div className="color-desc-item">
+									<img src={BulletNeutralFilledIconImage} alt="Bullet Filled Icon" />
+									<p>Terisi</p>
+								</div>
+							</div>
+						</div>
+						<ChooseSeat />
+					</div> */}
+					{/* <div className="choose-schedule-container">
+						<div className="page-heading">
+							<h3 className="page-heading-color1">PILIHAN</h3>
+							<h3 className="page-heading-color2">Jadwal</h3>
+						</div>
+						<div className="choose-schedule">
+							<ChooseSchedule />
+							<ChooseSchedule />
+							<ChooseSchedule />
+						</div>
 					</div>
+					<div className="bus-line-info">
+						<div className="page-heading">
+							<h3 className="page-heading-color1">Info</h3>
+							<h3 className="page-heading-color2">Rute</h3>
+						</div>
+						<BusLine />
+					</div> */}
 				</div>
 			</main>
 		</>
