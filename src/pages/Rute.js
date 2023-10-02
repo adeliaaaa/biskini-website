@@ -1,9 +1,147 @@
 import React from "react";
+import ChangeRouteIconImage from "../assets/ChangeRouteIcon.png";
+import ArrowLeftIconImage from "../assets/ArrowLeftIcon.png";
+import ArrowRightIconImage from "../assets/ArrowRightIcon.png";
+import ArrowRightBoldIconImage from "../assets/ArrowRightBoldIcon.png";
+import BusIconImage from "../assets/BusIcon.png";
+import BusWhiteIconImage from "../assets/BusWhiteIcon.png";
+import BulletIconImage from "../assets/BulletIcon.png";
+import BulletFilledIconImage from "../assets/BulletFilledIcon.png";
+import "../styles/Rute.css";
+import routeData from "../data/route.json"
 
 function Rute() {
 	return (
 		<>
-			<h1>Rute</h1>
+			{/* <div className="route">
+				<div className="route-info">
+					<div className="route-heading">
+						<h3 className="route-heading-color1">Info</h3>
+						<h3 className="route-heading-color2">Rute</h3>
+					</div>
+					<div className="terminal-change">
+						<div className="terminal-change-source">
+							<p>{routeData.location_origin}</p>
+							<hr />
+							<p>{routeData.location_destination}</p>
+						</div>
+						<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
+					</div>
+					<div className="route-data">
+						{routeData.data.map((route, idx) => (
+							<div className="route-item">
+								<div className="route-name">
+									<p>{route.terminal_name}</p>
+								</div>
+								{route.data.map((bus, idx) => (
+									<div className="route-detail">
+										<div className="route-source">
+											<div className="route-source-terminal">
+												<div className="route-source-terminal-name">
+													<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
+													<p>{bus.bus_name}</p>
+												</div>
+												<p>{bus.terminal_origin} - {bus.terminal_destination}</p>
+											</div>
+											<p>Berangkat pada {bus.departure_time} dari {bus.terminal_origin}</p>
+										</div>
+										<img src={ArrowRightIconImage} className="route-arrow-icon" alt="Arrow Right Icon" />
+									</div>
+								))}
+							</div>
+						))}
+					</div>
+				</div>
+				<div>
+
+				</div>
+			</div> */}
+			<div className="route">
+				<div className="route-detail-bus-trip">
+					<div className="route-detail-container">
+						<div className="route-detail-info">
+							<img src={ArrowLeftIconImage} className="route-arrow-icon" alt="Arrow Right Icon" />
+							<div className="route-source">
+								<div className="route-source-terminal">
+									<div className="route-source-terminal-name dark">
+										<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
+										<p>TMB K1</p>
+									</div>
+									<p>Cibiru - Cibereum</p>
+								</div>
+								<div className="schedule-info">
+									<p>Lihat Jadwal dan Rute Lengkap</p>
+									<img src={ArrowRightBoldIconImage} className="route-arrow-icon-small" alt="Arrow Right Icon" />
+								</div>
+							</div>
+						</div>
+						<div className="terminal-change bg-none">
+							<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
+							<div className="terminal-change-source bg-none">
+								<p>{routeData.location_origin}</p>
+								<p>{routeData.location_destination}</p>
+							</div>
+						</div>
+					</div>
+					<div className="bus-line">
+						<div className="bus-line-item">
+							<img src={BulletFilledIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+						<div className="bus-line-item">
+							<img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
+							<p>Halte Metro</p>
+						</div>
+					</div>
+					<div className="trip-info">
+						<div className="trip-time">
+							<div className="title">
+								<p>Estimasi Perjalanan</p>
+							</div>
+							<p className="trip-time-detail">10 menit</p>
+						</div>
+						<div className="trip-near-schedule">
+							<div className="title">
+								<p>Jadwal Terdekat</p>
+							</div>
+							<div className="trip-near-schedule-item">
+								<p>13.15</p>
+								<p>13.30</p>
+								<p>13.45</p>
+							</div>
+						</div>
+						<div className="trip-price">
+							<p className="trip-price-title">Harga</p>
+							<p className="trip-price-item">Rp10.000 - Rp15.000</p>
+						</div>
+						<button>PILIH JADWAL</button>
+					</div>
+				</div>
+			</div>
 		</>
 	);
 }

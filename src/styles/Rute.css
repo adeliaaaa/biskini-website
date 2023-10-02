@@ -1,0 +1,323 @@
+.route {
+    width: 50%;
+    max-width: 390px;
+}
+
+.route-info {
+    width: 100%;
+}
+
+.route-heading {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.route-heading h3 {
+    font-size: 36px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.route-heading-color1 {
+    color: var(--neutral-5);
+}
+
+.route-heading-color2 {
+    color: var(--primary-2);
+}
+
+.terminal-change {
+    background-color: var(--neutral-5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px;
+    border-radius: 15px;
+    padding: 5px 20px;
+}
+
+.terminal-change.bg-none {
+    padding: 0;
+    background-color: transparent;
+    margin: 0 20px;
+}
+
+.terminal-change-source {
+    flex: 1;
+}
+
+.terminal-change-source p {
+    font-size: 14px;
+    color: var(--secondary-7);
+    margin: 5px 0;
+}
+
+.terminal-change.bg-none p {
+    color: var(--neutral-5);
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.terminal-change-source hr {
+    width: 100%;
+    margin: 0;
+    border: 1px solid var(--neutral-6);;
+    border-top: 0;
+}
+
+.terminal-change-icon {
+    width: 28px;
+}
+
+
+.route-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.route-name {
+    padding: 20px;
+    background-color: var(--neutral-4);
+}
+
+.route-name p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--background);
+}
+
+.route-detail {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    border-bottom: 0.5px solid var(--neutral-1);
+    /* border: 4px solid #DF321B; */
+}
+
+.route-source {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.route-source-terminal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.route-source-terminal-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--neutral-5);
+    width: fit-content;
+}
+
+.route-source-terminal-name.dark {
+    background-color: var(--neutral-5);
+}
+
+.route-source p, .route-source-terminal-name p {
+    margin: 0;
+    font-size: 14px;
+    /* font-weight: 600; */
+    color: var(--neutral-5);
+}
+
+.route-source-terminal-name.dark p {
+    color: var(--secondary-7);
+}
+
+.route-source p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.route-bus-icon {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.route-arrow-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.route-arrow-icon-small {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+}
+
+.route-detail-bus-trip {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 59px);
+}
+
+.route-detail-container {
+    background-color: var(--secondary-7);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.route-detail-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.schedule-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.schedule-info p {
+    font-weight: 800;
+}
+
+.bus-line {
+    flex: 1;
+    padding: 0 20px;
+    margin: 20px 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.bus-line::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.bus-line::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+/* Handle */
+.bus-line::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.bus-line::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.bus-line-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.bus-line-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 2px;
+    height: 100%;
+    border-left: 2px solid var(--neutral-5);
+}
+
+.bus-line-item:first-child::before {
+    bottom: 0;
+    top: unset;
+    height: 50%;
+}
+
+.bus-line-item:last-child::before {
+    height: 50%;
+}
+
+.bus-line-item p {
+    font-size: 14px;
+    color: var(--neutral-5);
+    font-weight: 600;
+}
+
+.bullet-icon {
+    width: 12px;
+    height: 12px;
+    object-fit: contain;
+    position: relative;
+}
+
+.trip-info {
+    background-color: var(--neutral-5);
+    color: var(--background);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.trip-info p {
+    margin: 0;
+}
+
+.trip-time, .trip-near-schedule {
+    display: flex;
+    align-items: center;
+}
+
+.trip-time .title, .trip-near-schedule .title {
+    width: 50%;
+    max-width: 150px;
+}
+
+.trip-time .title p, .trip-near-schedule .title p {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.trip-time-detail {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--secondary-3);
+}
+
+.trip-near-schedule-item {
+    display: flex;
+    gap: 10px;
+}
+
+.trip-near-schedule-item p {
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: var(--secondary-7);
+    color: var(--neutral-5);
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.trip-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.trip-price-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.trip-price-item {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--secondary-3);
+}
