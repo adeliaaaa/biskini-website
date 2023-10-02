@@ -1,0 +1,85 @@
+{
+    "location_origin": "Halte Metro",
+    "location_destination": "Pasar Caringin",
+    "data": [
+        {
+            "terminal_name": "Trans Metro Bandung",
+            "data": [
+                {
+                    "bus_name": "TMB K1",
+                    "terminal_origin": "Cibiru",
+                    "terminal_destination": "Cicaheum",
+                    "departure_time": "06:00",
+                    "arrival_time": "07:00",
+                    "min_price": "Rp10.000",
+                    "max_price": "Rp15.000",
+                    "route" : [
+                        "Halte Metro",
+                        "Rancabolang",
+                        "SMKN 7 Bandung",
+                        "Showroom Hyundai",
+                        "BPN Jabar",
+                        "Gedung Sate",
+                        "Jalan Diponegoro",
+                        "Jalan Merdeka",
+                        "Jalan Asia Afrika",
+                        "Jalan Braga",
+                        "Jalan Cibadak",
+                        "Pasar Caringin"
+                    ]
+                }
+            ]
+        },
+        {
+            "terminal_name": "DAMRI",
+            "data": [
+                {
+                    "bus_name": "DAMRI K1",
+                    "terminal_origin": "Leuwipanjang",
+                    "terminal_destination": "Cicaheum",
+                    "departure_time": "06:00",
+                    "arrival_time": "07:00",
+                    "min_price": "Rp15.000",
+                    "max_price": "Rp17.000",
+                    "route" : [
+                        "Halte Metro",
+                        "Rancabolang",
+                        "SMKN 7 Bandung",
+                        "Showroom Hyundai",
+                        "BPN Jabar",
+                        "Gedung Sate",
+                        "Jalan Diponegoro",
+                        "Jalan Merdeka",
+                        "Jalan Asia Afrika",
+                        "Jalan Braga",
+                        "Jalan Cibadak",
+                        "Pasar Caringin"
+                    ]
+                },
+                {
+                    "bus_name": "DAMRI K2",
+                    "terminal_origin": "Batununggal",
+                    "terminal_destination": "Cicaheum",
+                    "departure_time": "08:00",
+                    "arrival_time": "09:00",
+                    "min_price": "Rp12.000",
+                    "max_price": "Rp17.000",
+                    "route" : [
+                        "Halte Metro",
+                        "Rancabolang",
+                        "SMKN 7 Bandung",
+                        "Showroom Hyundai",
+                        "BPN Jabar",
+                        "Gedung Sate",
+                        "Jalan Diponegoro",
+                        "Jalan Merdeka",
+                        "Jalan Asia Afrika",
+                        "Jalan Braga",
+                        "Jalan Cibadak",
+                        "Pasar Caringin"
+                    ]
+                }
+            ]
+        }
+    ]
+}
