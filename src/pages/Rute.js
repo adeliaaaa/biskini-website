@@ -113,7 +113,7 @@ function Rute() {
 												<p>{route.terminal_name}</p>
 											</div>
 											{route.data.map((bus, idx) => (
-												<div className="route-detail" onClick={() => updateBusId(idx)}>
+												<div className="route-detail">
 													<div className="route-source">
 														<div className="route-source-terminal">
 															<div className="route-source-terminal-name">
@@ -124,7 +124,7 @@ function Rute() {
 														</div>
 														<p>Berangkat pada {bus.departure_time} dari {bus.terminal_origin}</p>
 													</div>
-													<img src={ArrowRightIconImage} className="route-arrow-icon" alt="Arrow Right Icon" />
+													<img src={ArrowRightIconImage} className="route-arrow-icon" onClick={() => updateBusId(idx)} alt="Arrow Right Icon" />
 												</div>
 											))}
 										</div>
