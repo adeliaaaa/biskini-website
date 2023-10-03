@@ -159,3 +159,7 @@ button:active {
 	transform: translateY(1px);
 	background-color: var(--primary-1, #7069bd);
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}
