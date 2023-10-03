@@ -38,7 +38,7 @@ function Rute() {
 	const updateBusId = (id) => {
 		setBusId(id);
 		setIsSchedule(true);
-		setSearchParams({ ...searchParams, bus_id: id })
+		setSearchParams({ ...searchParams, bus_id: id });
 	}
 
 	const updateChooseSchedule = () => {
@@ -62,7 +62,22 @@ function Rute() {
 		setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: id });
 	}
 
+	const unselectRoute = () => {
+		if (searchParams.get('selected_schedule') !== null) {
+			setSelectedSchedule(-1);
+			setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
+		} else if (searchParams.get('choose_schedule') !== null) {
+			setChooseSchedule(false);
+			setSearchParams({ ...searchParams, bus_id: busId });
+		} else {
+			setBusId(-1);
+			setIsSchedule(false);
+			setSearchParams({});
+		}
+	}
+
 	useEffect(() => {
+		console.log('searchparams')
 		if (searchParams.get('bus_id') !== null) {
 			setBusId(parseInt(searchParams.get('bus_id')));
 			setIsSchedule(true);
@@ -84,7 +99,7 @@ function Rute() {
 		}
 
 
-	}, [])
+	}, [searchParams])
 
 	return (
 		<>
@@ -140,7 +155,7 @@ function Rute() {
 							<div className="route-detail-bus-trip">
 								<div className="route-detail-container">
 									<div className="route-detail-info">
-										<img src={ArrowLeftIconImage} className="route-arrow-icon" alt="Arrow Right Icon" />
+										<img src={ArrowLeftIconImage} className="route-arrow-icon cursor-pointer" alt="Arrow Right Icon" onClick={unselectRoute} />
 										<div className="route-source">
 											<div className="route-source-terminal">
 												<div className="route-source-terminal-name dark">
