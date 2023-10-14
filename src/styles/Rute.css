@@ -595,6 +595,10 @@ button {
     color: var(--neutral-5);
 }
 
+p.unavailable {
+    color: var(--red);
+}
+
 .select-seat .sm-btn{
     width: fit-content;
     font-size: 16px;

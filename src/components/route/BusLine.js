@@ -4,41 +4,23 @@ import "../../styles/Rute.css";
 import BulletFilledIconImage from "../../assets/BulletFilledIcon.png";
 import BulletIconImage from "../../assets/BulletIcon.png";
 
-function BusLine() {
+function BusLine({routeData}) {
     return (
         <div className="bus-line">
-            <div className="bus-line-item">
-                <img src={BulletFilledIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
-            <div className="bus-line-item">
-                <img src={BulletIconImage} className="bullet-icon" alt="Bullet Icon" />
-                <p>Halte Metro</p>
-            </div>
+            {routeData?.map((route, idx) => (
+                <div className="bus-line-item">
+                    <img 
+                        src={
+                            (idx === 0 || idx === routeData.length - 1) 
+                                ? BulletFilledIconImage 
+                                : BulletIconImage
+                        } 
+                        className="bullet-icon" 
+                        alt="Bullet Icon" 
+                    />
+                    <p>{route.name}</p>
+                </div>
+            ))}
         </div>
     )
 }

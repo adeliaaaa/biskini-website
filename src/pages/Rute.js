@@ -20,7 +20,10 @@ function Rute() {
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const [busId, setBusId] = useState(-1);
+	const [busId, setBusId] = useState(null);
+
+	const [busData, setBusData] = useState({});
+	
 
 	const [isSchedule, setIsSchedule] = useState(false);
 
@@ -37,6 +40,7 @@ function Rute() {
 
 	const updateBusId = (id) => {
 		setBusId(id);
+		updateBusData(id);
 		setIsSchedule(true);
 		setSearchParams({ ...searchParams, bus_id: id });
 	}
@@ -70,16 +74,35 @@ function Rute() {
 			setChooseSchedule(false);
 			setSearchParams({ ...searchParams, bus_id: busId });
 		} else {
-			setBusId(-1);
+			setBusId(null);
+			updateBusData(null);
 			setIsSchedule(false);
 			setSearchParams({});
 		}
 	}
 
+	const updateBusData = (busId) => {
+		if (busId) {
+
+			routeData.terminal_data.forEach((terminal) => {
+				terminal.bus_data.forEach((bus) => {
+					if (bus.bus_id === busId) {
+						setBusData(bus);
+						console.log(busId)
+						console.log(bus);
+					}
+				})
+			})
+		} else {
+			setBusData({});
+		}
+		
+	}
+
 	useEffect(() => {
-		console.log('searchparams')
 		if (searchParams.get('bus_id') !== null) {
-			setBusId(parseInt(searchParams.get('bus_id')));
+			setBusId(searchParams.get('bus_id'));
+			updateBusData(searchParams.get('bus_id'));
 			setIsSchedule(true);
 
 			if (searchParams.get('choose_schedule') !== null) {
@@ -97,8 +120,6 @@ function Rute() {
 				}
 			}
 		}
-
-
 	}, [searchParams])
 
 	return (
@@ -122,12 +143,12 @@ function Rute() {
 									<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
 								</div>
 								<div className="route-data">
-									{routeData.data.map((route, idx) => (
+									{routeData.terminal_data.map((route, idx) => (
 										<div className="route-item">
 											<div className="route-name">
 												<p>{route.terminal_name}</p>
 											</div>
-											{route.data.map((bus, idx) => (
+											{route.bus_data.map((bus, idx) => (
 												<div className="route-detail">
 													<div className="route-source">
 														<div className="route-source-terminal">
@@ -137,9 +158,13 @@ function Rute() {
 															</div>
 															<p>{bus.terminal_origin} - {bus.terminal_destination}</p>
 														</div>
-														<p>Berangkat pada {bus.departure_time} dari {bus.terminal_origin}</p>
+														{
+															bus.schedule.length > 0 && (
+																<p>Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
+															)
+														}
 													</div>
-													<img src={ArrowRightIconImage} className="route-arrow-icon" onClick={() => updateBusId(idx)} alt="Arrow Right Icon" />
+													<img src={ArrowRightIconImage} className="route-arrow-icon" onClick={() => updateBusId(bus.bus_id)} alt="Arrow Right Icon" />
 												</div>
 											))}
 										</div>
@@ -149,7 +174,6 @@ function Rute() {
 						)
 					}
 					
-					{/* RUTE VIEW - 2 */}
 					{
 						isSchedule && (
 							<div className="route-detail-bus-trip">
@@ -160,9 +184,9 @@ function Rute() {
 											<div className="route-source-terminal">
 												<div className="route-source-terminal-name dark">
 													<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
-													<p>TMB K1</p>
+													<p>{busData.bus_name}</p>
 												</div>
-												<p>Cibiru - Cibereum</p>
+												<p>{busData.terminal_origin} - {busData.terminal_destination}</p>
 											</div>
 											<div className="schedule-info">
 												<p>Lihat Jadwal dan Rute Lengkap</p>
@@ -184,27 +208,31 @@ function Rute() {
 								{
 									!chooseSchedule && selectedSchedule === -1 && (
 										<>
-											<BusLine />
+											<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
 											<div className="trip-info">
 												<div className="trip-time">
 													<div className="title">
 														<p>Estimasi Perjalanan</p>
 													</div>
-													<p className="trip-time-detail">10 menit</p>
+													<p className="trip-time-detail">{busData.time_duration}</p>
 												</div>
 												<div className="trip-near-schedule">
 													<div className="title">
 														<p>Jadwal Terdekat</p>
 													</div>
 													<div className="trip-near-schedule-item">
-														<p>13.15</p>
-														<p>13.30</p>
-														<p>13.45</p>
+														{
+															busData.schedule.map((schedule, idx) => (
+																idx < 3 && (
+																	<p>{schedule.departure_time}</p>
+																)
+															))
+														}
 													</div>
 												</div>
 												<div className="trip-price">
 													<p className="trip-price-title">Harga</p>
-													<p className="trip-price-item">Rp10.000 - Rp15.000</p>
+													<p className="trip-price-item">{busData.min_price} - {busData.max_price}</p>
 												</div>
 												<button onClick={updateChooseSchedule}>PILIH JADWAL</button>
 											</div>
@@ -272,7 +300,7 @@ function Rute() {
 				</div>
 				<div className="second-container">
 					{!chooseSchedule && selectedSchedule === -1 && (
-						<Maps />
+						<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
 					)}
 					{
 						chooseSchedule && selectedSchedule === -1 && (
@@ -285,11 +313,13 @@ function Rute() {
 									<div className="choose-schedule">
 										{
 											showSchedule ? (
-												<>
-													<ChooseSchedule selectScheduleAction={selectScheduleAction} />
-													<ChooseSchedule selectScheduleAction={selectScheduleAction} />
-													<ChooseSchedule selectScheduleAction={selectScheduleAction} />
-												</> 
+												busData.schedule.length > 0 ? (
+													busData.schedule.map((schedule, idx) => (
+														<ChooseSchedule busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
+													))
+												) : (
+													<p>Tidak ada jadwal yang tersedia</p>
+												)
 											) : (
 												<p>Belum ada jadwal yang dipilih</p>
 											)
@@ -301,7 +331,7 @@ function Rute() {
 										<h3 className="page-heading-color1">Info</h3>
 										<h3 className="page-heading-color2">Rute</h3>
 									</div>
-									<BusLine />
+									<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route}  />
 								</div>
 							</>
 						)
