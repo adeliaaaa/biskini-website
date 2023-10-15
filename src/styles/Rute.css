@@ -60,6 +60,11 @@ main {
     display: flex;
     gap: 10px;
     margin: 20px;
+    flex-wrap: wrap;
+}
+
+.page-heading.center {
+    justify-content: center;
 }
 
 .page-heading h3 {
