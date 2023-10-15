@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ChangeRouteIconImage from "../assets/ChangeRouteIcon.png";
 import ArrowLeftIconImage from "../assets/ArrowLeftIcon.png";
 import ArrowRightIconImage from "../assets/ArrowRightIcon.png";
 import ArrowRightBoldIconImage from "../assets/ArrowRightBoldIcon.png";
@@ -8,6 +7,7 @@ import BusWhiteIconImage from "../assets/BusWhiteIcon.png";
 import BulletNeutralFilledIconImage from "../assets/BulletNeutralFilled.png"
 import BulletPrimaryFilledIconImage from "../assets/BulletPrimaryFilled.png"
 import BulletSecondaryFilledIconImage from "../assets/BulletSecondaryFilled.png"
+import ChangeRouteIconImage from "../assets/ChangeRouteIcon.png";
 import routeData from "../data/route.json"
 import terminalData from "../data/terminal.json"
 import BusLine from "../components/route/BusLine";
@@ -185,7 +185,7 @@ function Rute() {
 	return (
 		<>
 			<main>
-			<div className={`route ${!chooseSchedule ? 'reverse' : ''}`}>
+				<div className={`route ${!chooseSchedule ? 'reverse' : ''}`}>
 					{/* RUTE VIEW - 1 */}
 					{
 						!isSchedule && (
