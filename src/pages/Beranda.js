@@ -9,6 +9,7 @@ import RuteBusImage from "../assets/RuteBus.png";
 import LiveBusImage from "../assets/LiveBus.png";
 import BantuanBusImage from "../assets/BantuanBus.png";
 import UpdateBusImage from "../assets/UpdateBus.png";
+import UpdateButton from "../assets/updateButton.png";
 import "../styles/Beranda.css";
 
 function Beranda() {
@@ -157,7 +158,7 @@ function Beranda() {
 								Lihat detail -{">"}{" "}
 							</Link>
 						</div>
-						<div className="update-card-container">
+						<div id="hide-in-mobile" className="update-card-container">
 							<img src={UpdateBusImage} alt="Update Bus" />
 							<div className="update-card-description">
 								<h5>Penggabungan BUMN Transportasi Jalan</h5>
@@ -170,6 +171,12 @@ function Beranda() {
 							</Link>
 						</div>
 					</div>
+				</div>
+				<div>
+					<button className="update-button">
+						Lihat Lainnya
+						<img src={UpdateButton} alt="Update Bus" height="16px" />
+					</button>
 				</div>
 			</div>
 			<Footer />
