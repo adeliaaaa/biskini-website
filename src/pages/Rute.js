@@ -15,7 +15,7 @@ import ChooseSchedule from "../components/route/ChooseSchedule";
 import ChooseSeat from "../components/route/ChooseSeat";
 import Maps from "../components/route/Maps";
 import "../styles/Rute.css";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import DropDownSmall from "../components/route/DropDownSmall";
 
 function Rute() {
@@ -28,7 +28,6 @@ function Rute() {
 	const [busId, setBusId] = useState(null);
 
 	const [busData, setBusData] = useState({});
-	
 
 	const [isSchedule, setIsSchedule] = useState(false);
 
@@ -59,13 +58,20 @@ function Rute() {
 	const updateBusId = (id) => {
 		setBusId(id);
 		updateBusData(id);
-		setIsSchedule(true);
+		// setIsSchedule(true);
 		setSearchParams({ ...searchParams, bus_id: id });
+	}
+
+	const updateShowBusDetail = (id) => {
+		setBusId(id);
+		updateBusData(id);
+		setIsSchedule(true);
+		setSearchParams({ ...searchParams, bus_id: id, bus_detail: true });
 	}
 
 	const updateChooseSchedule = () => {
 		setChooseSchedule(true);
-		setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true });
+		setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true });
 	}
 
 	const searchSchedule = (e) => {
@@ -75,24 +81,24 @@ function Rute() {
 		} else {
 			setDatePickerValidation(true);
 			setShowSchedule(true);
-			setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
 		}
 	}
 
 	const selectScheduleAction = (id, data = {}) => {
 		setSelectedSchedule(id);
 		setScheduleData(data);
-		setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: id });
+		setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: id });
 	}
 
 	const unselectRoute = () => {
 		if (searchParams.get('selected_schedule') !== null) {
 			setSelectedSchedule(null);
 			setScheduleData({});
-			setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
 		} else if (searchParams.get('choose_schedule') !== null) {
 			setChooseSchedule(false);
-			setSearchParams({ ...searchParams, bus_id: busId });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true });
 		} else {
 			setBusId(null);
 			updateBusData(null);
@@ -133,38 +139,47 @@ function Rute() {
 		if (searchParams.get('bus_id') !== null) {
 			setBusId(searchParams.get('bus_id'));
 			updateBusData(searchParams.get('bus_id'));
-			setIsSchedule(true);
 
-			if (searchParams.get('choose_schedule') !== null) {
-				setChooseSchedule(true);
-				
-				if (searchParams.get('departure_date') !== null && searchParams.get('passenger_count') !== null) {
-					setDepartureDate(searchParams.get('departure_date'));
-					setPassengerCount(parseInt(searchParams.get('passenger_count')));
-
-					setShowSchedule(true);
-
-					if (searchParams.get('selected_schedule') !== null) {
-						const selectedScheduleId = searchParams.get('selected_schedule');
-						setSelectedSchedule(selectedScheduleId);
-						setScheduleData(findScheduleById(selectedScheduleId));
+			if (searchParams.get('bus_detail') !== null) {
+				setIsSchedule(true);
+				if (searchParams.get('choose_schedule') !== null) {
+					setChooseSchedule(true);
+					
+					if (searchParams.get('departure_date') !== null && searchParams.get('passenger_count') !== null) {
+						setDepartureDate(searchParams.get('departure_date'));
+						setPassengerCount(parseInt(searchParams.get('passenger_count')));
+	
+						setShowSchedule(true);
+	
+						if (searchParams.get('selected_schedule') !== null) {
+							const selectedScheduleId = searchParams.get('selected_schedule');
+							setSelectedSchedule(selectedScheduleId);
+							setScheduleData(findScheduleById(selectedScheduleId));
+						} else {
+							setSelectedSchedule(-1);
+							setScheduleData({});
+						}
 					} else {
-						setSelectedSchedule(-1);
-						setScheduleData({});
+						setDepartureDate("");
+						setPassengerCount(0);
+						setShowSchedule(false);
 					}
 				} else {
-					setDepartureDate("");
-					setPassengerCount(0);
-					setShowSchedule(false);
+					setChooseSchedule(false);
 				}
 			} else {
-				setChooseSchedule(false);
+				setIsSchedule(false);
 			}
+
+
 		} else {
 			setBusId(null);
 			updateBusData(null);
-			setIsSchedule(false);
 		}
+
+		setTerminalOrigin(terminalData.terminal_data[0])
+		setTerminalDestination(terminalData.terminal_data[1])
+
 	}, [searchParams])
 
 	return (
@@ -198,14 +213,14 @@ function Rute() {
 									<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
 								</div>
 								<div className="route-data">
-									{routeData.terminal_data.map((route, idx) => (
+									{routeData.terminal_data?.map((route, idx) => (
 										<div key={idx} className="route-item">
 											<div className="route-name">
 												<p className="text3">{route.terminal_name}</p>
 											</div>
-											{route.bus_data.map((bus, idx) => (
-												<div key={idx} className="route-detail">
-													<div className="route-source">
+											{route.bus_data?.map((bus, idx) => (
+												<div key={idx} className={`route-detail ${busId === bus.bus_id ? 'highlighted' : ''}`}>
+													<div className="route-source cursor-pointer" onClick={() => updateBusId(bus.bus_id)}>
 														<div className="route-source-terminal">
 															<div className="route-source-terminal-name">
 																<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
@@ -219,7 +234,7 @@ function Rute() {
 															)
 														}
 													</div>
-													<img src={ArrowRightIconImage} className="route-arrow-icon" onClick={() => updateBusId(bus.bus_id)} alt="Arrow Right Icon" />
+													<img src={ArrowRightIconImage} className="route-arrow-icon cursor-pointer" onClick={() => updateShowBusDetail(bus.bus_id)} alt="Arrow Right Icon" />
 												</div>
 											))}
 										</div>
@@ -277,7 +292,7 @@ function Rute() {
 													</div>
 													<div className="trip-near-schedule-item">
 														{
-															busData.schedule.map((schedule, idx) => (
+															busData.schedule?.map((schedule, idx) => (
 																idx < 3 && (
 																	<p key={idx} className="text3">{schedule.departure_time}</p>
 																)
@@ -344,7 +359,13 @@ function Rute() {
 														<p className="text3">{passengerCount} Orang</p>
 													</div>
 												</div>
-												<button disabled={!isCanBuy}>BAYAR</button>
+												<div className="schedule-item">
+													<p className="text3">Harga</p>
+													<p className="text1 schedule-item-price">{scheduleData?.price}</p>
+												</div>
+												<Link to="/data-diri" className="link-none">
+													<button disabled={!isCanBuy}>ISI DATA DIRI</button>
+												</Link>
 											</div>
 										</div>
 									)
@@ -369,7 +390,7 @@ function Rute() {
 										{
 											showSchedule ? (
 												busData.schedule.length > 0 ? (
-													busData.schedule.map((schedule, idx) => (
+													busData.schedule?.map((schedule, idx) => (
 														<ChooseSchedule key={idx} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
 													))
 												) : (
