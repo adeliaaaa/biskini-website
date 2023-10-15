@@ -42,7 +42,7 @@ function Beranda() {
 					</div>
 				</div>
 				<div className="right-side-explore">
-					<img src={BusImage} alt="Bus" height="285px" />
+					<img src={BusImage} alt="Bus" />
 				</div>
 			</div>
 			<div className="menu-section">

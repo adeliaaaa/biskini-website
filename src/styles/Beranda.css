@@ -84,13 +84,20 @@
 
 	display: flex;
 	align-items: center;
+	border-radius: 50px;
 }
 
 .right-side-explore > img {
 	border-radius: 50px;
+	/* width: 100%; */
+	max-width: 428px;
 }
 
 @media only screen and (max-width: 768px) {
+	.right-side-explore {
+		max-height: 150px;
+	}
+
 	.explore-section {
 		justify-content: center;
 	}
@@ -98,7 +105,26 @@
 
 @media only screen and (max-width: 1065px) {
 	.right-side-explore {
-		display: none;
+		max-height: 200px;
+		overflow: hidden;
+		width: 100%;
+	}
+
+	.right-side-explore > img {
+		width: 100%;
+		max-width: unset;
+	}
+
+	.explore-section {
+		flex-direction: column-reverse;
+
+		padding: 100px 50px;
+		align-items: center;
+		align-self: stretch;
+	}
+	.left-side-explore {
+		width: 100%;
+		max-width: unset;
 	}
 }
 
