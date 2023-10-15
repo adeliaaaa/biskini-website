@@ -9,7 +9,7 @@ function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
     const seatClass = (seat) => {
         if (selectedSeats.includes(seat)) {
             return 'seat chosen'
-        } else if (seatAvailable.includes(seat)) {
+        } else if (seatAvailable?.includes(seat)) {
             return 'seat empty'
         } else {
             return 'seat'
@@ -17,7 +17,7 @@ function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
     }
 
     const updateSelectedSeats = (seatId) => {
-        if (!seatAvailable.includes(seatId)) return
+        if (!seatAvailable?.includes(seatId)) return
         
         let selectedSeatCount = selectedSeats.length
 
@@ -44,7 +44,7 @@ function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
                 </div>
             </div>
             {[...Array(8)].map((_, idx) => (
-                <div className="seats-row">
+                <div key={idx} className="seats-row">
                     <div className="seats-col">
                         <p 
                             className={seatClass((idx * 4 ) + 1)}

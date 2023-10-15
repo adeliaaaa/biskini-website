@@ -8,7 +8,7 @@ function BusLine({routeData}) {
     return (
         <div className="bus-line">
             {routeData?.map((route, idx) => (
-                <div className="bus-line-item">
+                <div key={idx} className="bus-line-item">
                     <img 
                         src={
                             (idx === 0 || idx === routeData.length - 1) 

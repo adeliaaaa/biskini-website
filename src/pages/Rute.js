@@ -166,12 +166,12 @@ function Rute() {
 								</div>
 								<div className="route-data">
 									{routeData.terminal_data.map((route, idx) => (
-										<div className="route-item">
+										<div key={route.terminal_id} className="route-item">
 											<div className="route-name">
 												<p>{route.terminal_name}</p>
 											</div>
 											{route.bus_data.map((bus, idx) => (
-												<div className="route-detail">
+												<div key={bus.bus_id} className="route-detail">
 													<div className="route-source">
 														<div className="route-source-terminal">
 															<div className="route-source-terminal-name">
@@ -246,7 +246,7 @@ function Rute() {
 														{
 															busData.schedule.map((schedule, idx) => (
 																idx < 3 && (
-																	<p>{schedule.departure_time}</p>
+																	<p key={idx}>{schedule.departure_time}</p>
 																)
 															))
 														}
@@ -337,7 +337,7 @@ function Rute() {
 											showSchedule ? (
 												busData.schedule.length > 0 ? (
 													busData.schedule.map((schedule, idx) => (
-														<ChooseSchedule busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
+														<ChooseSchedule key={schedule.scheduleId} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
 													))
 												) : (
 													<p>Tidak ada jadwal yang tersedia</p>
