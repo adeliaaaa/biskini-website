@@ -39,7 +39,9 @@ function Rute() {
 
 
 	const [departureDate, setDepartureDate] = useState("");
+
 	const [passengerCount, setPassengerCount] = useState(0);
+	
 	const [datePickerValidation, setDatePickerValidation] = useState(true);
 
 	const updateBusId = (id) => {
@@ -89,13 +91,10 @@ function Rute() {
 
 	const updateBusData = (busId) => {
 		if (busId) {
-
 			routeData.terminal_data.forEach((terminal) => {
 				terminal.bus_data.forEach((bus) => {
 					if (bus.bus_id === busId) {
 						setBusData(bus);
-						console.log(busId)
-						console.log(bus);
 					}
 				})
 			})
@@ -110,15 +109,16 @@ function Rute() {
 			for (const bus of terminal.bus_data) {
 				for (const schedule of bus.schedule) {
 					if (schedule.schedule_id === scheduleId) {
-						return schedule; // Found the schedule with the specified ID
+						return schedule;
 					}
 				}
 			}
 		}
-		return {}; // Schedule not found
+		return {};
 	}
 
 	useEffect(() => {
+		console.log('useeffect')
 		if (searchParams.get('bus_id') !== null) {
 			setBusId(searchParams.get('bus_id'));
 			updateBusData(searchParams.get('bus_id'));
@@ -137,10 +137,22 @@ function Rute() {
 						const selectedScheduleId = searchParams.get('selected_schedule');
 						setSelectedSchedule(selectedScheduleId);
 						setScheduleData(findScheduleById(selectedScheduleId));
-						console.log(findScheduleById(selectedScheduleId))
+					} else {
+						setSelectedSchedule(-1);
+						setScheduleData({});
 					}
+				} else {
+					setDepartureDate("");
+					setPassengerCount(0);
+					setShowSchedule(false);
 				}
+			} else {
+				setChooseSchedule(false);
 			}
+		} else {
+			setBusId(null);
+			updateBusData(null);
+			setIsSchedule(false);
 		}
 	}, [searchParams])
 
@@ -166,12 +178,12 @@ function Rute() {
 								</div>
 								<div className="route-data">
 									{routeData.terminal_data.map((route, idx) => (
-										<div key={route.terminal_id} className="route-item">
+										<div key={idx} className="route-item">
 											<div className="route-name">
 												<p>{route.terminal_name}</p>
 											</div>
 											{route.bus_data.map((bus, idx) => (
-												<div key={bus.bus_id} className="route-detail">
+												<div key={idx} className="route-detail">
 													<div className="route-source">
 														<div className="route-source-terminal">
 															<div className="route-source-terminal-name">
@@ -337,7 +349,7 @@ function Rute() {
 											showSchedule ? (
 												busData.schedule.length > 0 ? (
 													busData.schedule.map((schedule, idx) => (
-														<ChooseSchedule key={schedule.scheduleId} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
+														<ChooseSchedule key={idx} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
 													))
 												) : (
 													<p>Tidak ada jadwal yang tersedia</p>
