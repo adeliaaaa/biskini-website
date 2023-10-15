@@ -118,7 +118,6 @@ function Rute() {
 	}
 
 	useEffect(() => {
-		console.log('useeffect')
 		if (searchParams.get('bus_id') !== null) {
 			setBusId(searchParams.get('bus_id'));
 			updateBusData(searchParams.get('bus_id'));
@@ -159,7 +158,7 @@ function Rute() {
 	return (
 		<>
 			<main>
-				<div className="route">
+			<div className={`route ${!chooseSchedule ? 'reverse' : ''}`}>
 					{/* RUTE VIEW - 1 */}
 					{
 						!isSchedule && (
@@ -332,7 +331,7 @@ function Rute() {
 						)
 					}
 				</div>
-				<div className="second-container">
+				<div className={`second-container ${!chooseSchedule ? 'reverse' : ''}`}>
 					{!chooseSchedule && selectedSchedule === -1 && (
 						<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
 					)}
@@ -365,13 +364,50 @@ function Rute() {
 										<h3 className="page-heading-color1">Info</h3>
 										<h3 className="page-heading-color2">Rute</h3>
 									</div>
-									<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route}  />
+									<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} chooseSchedule={chooseSchedule} />
 								</div>
 							</>
 						)
 					}
 					{
 						selectedSchedule !== -1 && (
+							// <div>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// 	<p>hahaha</p>
+							// </div>
 							<div className="seats-container">
 								<div className="page-heading">
 									<h3 className="page-heading-color1">PILIHAN</h3>

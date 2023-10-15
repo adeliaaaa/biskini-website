@@ -1,12 +1,15 @@
 main {
     display: flex;
     position: relative;
+    flex-direction: row;
+    overflow-x: hidden;
 }
 
 .route {
     width: 50%;
     max-width: 390px;
     position: fixed;
+    min-height: calc(100vh - 59px);
 }
 
 .second-container {
@@ -14,6 +17,39 @@ main {
     margin-left: min(50%, 390px);
     min-height: calc(100vh - 59px);
     display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 768px) {
+    .second-container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    main {
+        flex-direction: column;
+    }
+
+    .route {
+        width: 100%;
+        position: relative;
+        max-width: unset;
+        min-height: fit-content;
+    }
+
+    .route.reverse {
+        order: 2;
+    }
+
+    .second-container {
+        margin-left: 0;
+        min-height: fit-content;
+    }
+
+    .second-container.reverse {
+        order: 1;
+    }
 }
 
 .route-info {
@@ -184,6 +220,12 @@ main {
     height: calc(100vh - 59px);
 }
 
+@media only screen and (max-width: 480px) {
+    .route-detail-bus-trip {
+        height: fit-content;
+    }
+}
+
 .route-detail-container {
     background-color: var(--secondary-7);
     padding: 20px 0;
@@ -215,6 +257,17 @@ main {
     margin: 20px 0;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .bus-line {
+        flex: unset;
+        height: fit-content;
+    }
+
+    .bus-line.scroll {
+        height: 300px;
+    }
 }
 
 ::-webkit-scrollbar {
@@ -346,6 +399,14 @@ main {
     flex: 1;
     background-color: var(--secondary-7);
     padding: 20px;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .date-picker-field {
+        height: fit-content;
+        flex: unset;
+    }
 }
 
 .date-picker-field form {
@@ -394,6 +455,7 @@ button {
     flex-direction: column;
     background-color: var(--secondary-7);
     flex: 1;
+    overflow-y: auto;
 }
 
 .schedule {
@@ -434,6 +496,13 @@ button {
 
 .maps {
     width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+    .maps {
+        height: 400px;
+    }
 }
 
 .maps img {
@@ -443,11 +512,25 @@ button {
 
 .seats-container {
     background-color: var(--primary-7);
-    padding: 40px;
+    padding: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: calc(100vw - 390px);
+    min-height: calc(100vh - 59px);
+    overflow-x: auto !important;
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-container {
+        width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-container {
+        width: 100%;
+    }
 }
 
 .seats-container p {
@@ -499,6 +582,8 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 90%;
+    max-width: 500px;
 }
 
 .seats p {
@@ -528,6 +613,41 @@ button {
     align-items: center;
     justify-content: center;
     border-radius: 15px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .seats-row {
+        gap: 24px;
+    }
+
+    .seats-col {
+        gap: 24px;
+    }
+
+    .seat {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-row {
+        gap: 24px;
+    }
+
+    .seats-col {
+        gap: 24px;
+    }
+
+    .seat {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* .seat {
+        width: 32px;
+        height: 48px;
+    } */
 }
 
 .seat.chosen {
