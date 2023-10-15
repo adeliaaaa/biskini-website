@@ -22,6 +22,12 @@ footer {
 	}
 }
 
+@media only screen and (max-width: 480px) {
+	footer {
+		padding: 100px 50px;
+	}
+}
+
 .contact-us-text {
 	color: var(--neutral-5, #283148);
 	font-family: Anton;
