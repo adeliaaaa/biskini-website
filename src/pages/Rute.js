@@ -33,6 +33,10 @@ function Rute() {
 
 	const [selectedSchedule, setSelectedSchedule] = useState(-1); 
 
+	const [scheduleData, setScheduleData] = useState({}); 
+
+	const [isCanBuy, setIsCanBuy] = useState(false);
+
 
 	const [departureDate, setDepartureDate] = useState("");
 	const [passengerCount, setPassengerCount] = useState(0);
@@ -61,14 +65,16 @@ function Rute() {
 		}
 	}
 
-	const selectScheduleAction = (id) => {
+	const selectScheduleAction = (id, data = {}) => {
 		setSelectedSchedule(id);
+		setScheduleData(data);
 		setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: id });
 	}
 
 	const unselectRoute = () => {
 		if (searchParams.get('selected_schedule') !== null) {
-			setSelectedSchedule(-1);
+			setSelectedSchedule(null);
+			setScheduleData({});
 			setSearchParams({ ...searchParams, bus_id: busId, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
 		} else if (searchParams.get('choose_schedule') !== null) {
 			setChooseSchedule(false);
@@ -99,6 +105,19 @@ function Rute() {
 		
 	}
 
+	const findScheduleById = (scheduleId) => {
+		for (const terminal of routeData.terminal_data) {
+			for (const bus of terminal.bus_data) {
+				for (const schedule of bus.schedule) {
+					if (schedule.schedule_id === scheduleId) {
+						return schedule; // Found the schedule with the specified ID
+					}
+				}
+			}
+		}
+		return {}; // Schedule not found
+	}
+
 	useEffect(() => {
 		if (searchParams.get('bus_id') !== null) {
 			setBusId(searchParams.get('bus_id'));
@@ -115,7 +134,10 @@ function Rute() {
 					setShowSchedule(true);
 
 					if (searchParams.get('selected_schedule') !== null) {
-						setSelectedSchedule(parseInt(searchParams.get('selected_schedule')));
+						const selectedScheduleId = searchParams.get('selected_schedule');
+						setSelectedSchedule(selectedScheduleId);
+						setScheduleData(findScheduleById(selectedScheduleId));
+						console.log(findScheduleById(selectedScheduleId))
 					}
 				}
 			}
@@ -272,24 +294,24 @@ function Rute() {
 												<div className="schedule-item">
 													<p>Tujuan Keberangkatan</p>
 													<div className="schedule-item-detail">
-														<p>Halte Metro</p>
-														<p>Pasar Caringin</p>
+														<p>{busData.route[0].name}</p>
+														<p>{busData.route[busData.route.length - 1].name}</p>
 													</div>
 												</div>
 												<div className="schedule-item">
 													<p>Tanggal Keberangkatan</p>
 													<div className="schedule-item-detail">
-														<p>30 September 2023</p>
-														<p><span className="font-bold">13.15</span> - 13.48</p>
+														<p>{departureDate}</p>
+														<p><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
 													</div>
 												</div>
 												<div className="schedule-item">
 													<p>Jumlah Penumpang</p>
 													<div className="schedule-item-detail">
-														<p>2 Orang</p>
+														<p>{passengerCount} Orang</p>
 													</div>
 												</div>
-												<button>BAYAR</button>
+												<button disabled={!isCanBuy}>BAYAR</button>
 											</div>
 										</div>
 									)
@@ -360,7 +382,11 @@ function Rute() {
 										</div>
 									</div>
 								</div>
-								<ChooseSeat />
+								<ChooseSeat 
+									seatAvailable={scheduleData.seat_available} 
+									passengerCount={passengerCount} 
+									setIsCanBuy={setIsCanBuy}
+								/>
 							</div>
 						)
 					}

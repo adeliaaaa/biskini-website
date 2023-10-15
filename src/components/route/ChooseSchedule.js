@@ -27,7 +27,7 @@ function ChooseSchedule({ busData, scheduleIdx, passengerCount, selectScheduleAc
             </div>
             <div className="select-seat">
                 <p className={passengerCount > scheduleData?.seat_available.length && 'unavailable'}>Tersedia {scheduleData?.seat_available.length} Kursi</p>
-                <button disabled={passengerCount > scheduleData?.seat_available.length} className="sm-btn" onClick={() => selectScheduleAction(0)}>PILIH KURSI</button>
+                <button disabled={passengerCount > scheduleData?.seat_available.length} className="sm-btn" onClick={() => selectScheduleAction(scheduleData?.schedule_id, scheduleData)}>PILIH KURSI</button>
             </div>
         </div>
     )
