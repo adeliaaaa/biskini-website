@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/Logo.svg";
+import NavbarMobile from "../assets/NavbarMobile.png";
 import "../styles/Navbar.css";
 
 function Navbar() {
@@ -42,7 +43,7 @@ function Navbar() {
 					</Link>
 				</div>
 				<div className="right-navbar2">
-					<img src={Logo} alt="logo" />
+					<img src={NavbarMobile} alt="logo" />
 				</div>
 			</nav>
 		</>

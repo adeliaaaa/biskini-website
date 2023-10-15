@@ -67,6 +67,10 @@
 	box-shadow: inset 0px -6px #f28475;
 }
 
+.right-navbar2 {
+	cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
 	.navbar {
 		padding: 0% 20% 0% 20%;
@@ -79,8 +83,18 @@
 	}
 }
 
-@media only screen and (max-width: 568px) {
+@media only screen and (max-width: 480px) {
+	.navbar {
+		/* display: flex; */
+		padding: 0px 50px;
+		/* justify-content: space-between;
+		align-items: center;
+		align-self: stretch; */
+	}
+}
+
+/* @media only screen and (max-width: 568px) {
 	.navbar {
 		padding: 0% 10% 0% 10%;
 	}
-}
+} */
