@@ -18,7 +18,7 @@ function BusLine({routeData, chooseSchedule}) {
                         className="bullet-icon" 
                         alt="Bullet Icon" 
                     />
-                    <p>{route.name}</p>
+                    <p className="text3">{route.name}</p>
                 </div>
             ))}
         </div>

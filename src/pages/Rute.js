@@ -169,9 +169,9 @@ function Rute() {
 								</div>
 								<div className="terminal-change">
 									<div className="terminal-change-source">
-										<p>{routeData.location_origin}</p>
+										<p className="text3">{routeData.location_origin}</p>
 										<hr />
-										<p>{routeData.location_destination}</p>
+										<p className="text3">{routeData.location_destination}</p>
 									</div>
 									<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
 								</div>
@@ -179,7 +179,7 @@ function Rute() {
 									{routeData.terminal_data.map((route, idx) => (
 										<div key={idx} className="route-item">
 											<div className="route-name">
-												<p>{route.terminal_name}</p>
+												<p className="text3">{route.terminal_name}</p>
 											</div>
 											{route.bus_data.map((bus, idx) => (
 												<div key={idx} className="route-detail">
@@ -187,13 +187,13 @@ function Rute() {
 														<div className="route-source-terminal">
 															<div className="route-source-terminal-name">
 																<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
-																<p>{bus.bus_name}</p>
+																<p className="text3">{bus.bus_name}</p>
 															</div>
-															<p>{bus.terminal_origin} - {bus.terminal_destination}</p>
+															<p className="text3">{bus.terminal_origin} - {bus.terminal_destination}</p>
 														</div>
 														{
 															bus.schedule.length > 0 && (
-																<p>Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
+																<p className="text3">Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
 															)
 														}
 													</div>
@@ -217,12 +217,12 @@ function Rute() {
 											<div className="route-source-terminal">
 												<div className="route-source-terminal-name dark">
 													<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
-													<p>{busData.bus_name}</p>
+													<p className="text3">{busData.bus_name}</p>
 												</div>
-												<p>{busData.terminal_origin} - {busData.terminal_destination}</p>
+												<p className="text3">{busData.terminal_origin} - {busData.terminal_destination}</p>
 											</div>
 											<div className="schedule-info">
-												<p>Lihat Jadwal dan Rute Lengkap</p>
+												<p className="text3">Lihat Jadwal dan Rute Lengkap</p>
 												<img src={ArrowRightBoldIconImage} className="route-arrow-icon-small" alt="Arrow Right Icon" />
 											</div>
 										</div>
@@ -231,8 +231,8 @@ function Rute() {
 										<div className="terminal-change bg-none">
 											<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
 											<div className="terminal-change-source bg-none">
-												<p>{routeData.location_origin}</p>
-												<p>{routeData.location_destination}</p>
+												<p className="text3">{routeData.location_origin}</p>
+												<p className="text3">{routeData.location_destination}</p>
 											</div>
 										</div>
 									)}
@@ -245,26 +245,26 @@ function Rute() {
 											<div className="trip-info">
 												<div className="trip-time">
 													<div className="title">
-														<p>Estimasi Perjalanan</p>
+														<p className="text3">Estimasi Perjalanan</p>
 													</div>
-													<p className="trip-time-detail">{busData.time_duration}</p>
+													<p className="trip-time-detail text3">{busData.time_duration}</p>
 												</div>
 												<div className="trip-near-schedule">
 													<div className="title">
-														<p>Jadwal Terdekat</p>
+														<p className="text3">Jadwal Terdekat</p>
 													</div>
 													<div className="trip-near-schedule-item">
 														{
 															busData.schedule.map((schedule, idx) => (
 																idx < 3 && (
-																	<p key={idx}>{schedule.departure_time}</p>
+																	<p key={idx} className="text3">{schedule.departure_time}</p>
 																)
 															))
 														}
 													</div>
 												</div>
 												<div className="trip-price">
-													<p className="trip-price-title">Harga</p>
+													<p className="trip-price-title text3">Harga</p>
 													<p className="trip-price-item">{busData.min_price} - {busData.max_price}</p>
 												</div>
 												<button onClick={updateChooseSchedule}>PILIH JADWAL</button>
@@ -286,7 +286,7 @@ function Rute() {
 													<input type="number" id="passenger-count" name="passenger-count" value={passengerCount} onChange={(e) => setPassengerCount(e.target.value)} />
 												</div>
 												{!datePickerValidation && (
-													<p>Pastikan telah memilih tanggal Keberangkatan dan jumlah penumpang</p>
+													<p className="text3">Pastikan telah memilih tanggal Keberangkatan dan jumlah penumpang</p>
 												)}
 												<button onClick={(e) => searchSchedule(e)}>CARI JADWAL</button>
 											</form>
@@ -303,23 +303,23 @@ function Rute() {
 											</div>
 											<div className="schedule">
 												<div className="schedule-item">
-													<p>Tujuan Keberangkatan</p>
+													<p className="text3">Tujuan Keberangkatan</p>
 													<div className="schedule-item-detail">
-														<p>{busData.route[0].name}</p>
-														<p>{busData.route[busData.route.length - 1].name}</p>
+														<p className="text3">{busData.route[0].name}</p>
+														<p className="text3">{busData.route[busData.route.length - 1].name}</p>
 													</div>
 												</div>
 												<div className="schedule-item">
-													<p>Tanggal Keberangkatan</p>
+													<p className="text3">Tanggal Keberangkatan</p>
 													<div className="schedule-item-detail">
-														<p>{departureDate}</p>
-														<p><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
+														<p className="text3">{departureDate}</p>
+														<p className="text3"><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
 													</div>
 												</div>
 												<div className="schedule-item">
-													<p>Jumlah Penumpang</p>
+													<p className="text3">Jumlah Penumpang</p>
 													<div className="schedule-item-detail">
-														<p>{passengerCount} Orang</p>
+														<p className="text3">{passengerCount} Orang</p>
 													</div>
 												</div>
 												<button disabled={!isCanBuy}>BAYAR</button>
@@ -414,19 +414,19 @@ function Rute() {
 									<h3 className="page-heading-color2">KURSI</h3>
 								</div>
 								<div className="color-desc">
-									<p>Keterangan Warna</p>
+									<p className="text3">Keterangan Warna</p>
 									<div className="color-desc-detail">
 										<div className="color-desc-item">
 											<img src={BulletSecondaryFilledIconImage} alt="Bullet Filled Icon" />
-											<p>Dipilih</p>
+											<p className="text3">Dipilih</p>
 										</div>
 										<div className="color-desc-item">
 											<img src={BulletPrimaryFilledIconImage} alt="Bullet Filled Icon" />
-											<p>Kosong</p>
+											<p className="text3">Kosong</p>
 										</div>
 										<div className="color-desc-item">
 											<img src={BulletNeutralFilledIconImage} alt="Bullet Filled Icon" />
-											<p>Terisi</p>
+											<p className="text3">Terisi</p>
 										</div>
 									</div>
 								</div>

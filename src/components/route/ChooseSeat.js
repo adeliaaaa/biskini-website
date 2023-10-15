@@ -37,23 +37,23 @@ function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
         <div className="seats">
             <div className="seats-row">
                 <div className="seats-col">
-                    <p className="seat driver">CO-DRIVER</p>
+                    <p className="seat driver text2">CO-DRIVER</p>
                 </div>
                 <div className="seats-col">
-                    <p className="seat driver">DRIVER</p>
+                    <p className="seat driver text2">DRIVER</p>
                 </div>
             </div>
             {[...Array(8)].map((_, idx) => (
                 <div key={idx} className="seats-row">
                     <div className="seats-col">
                         <p 
-                            className={seatClass((idx * 4 ) + 1)}
+                            className={seatClass((idx * 4 ) + 1) + ' text2'}
                             onClick={() => updateSelectedSeats((idx * 4 ) + 1)}
                         >
                             {(idx * 4 ) + 1}
                         </p>
                         <p 
-                            className={seatClass((idx * 4 ) + 2)}
+                            className={seatClass((idx * 4 ) + 2) + ' text2'}
                             onClick={() => updateSelectedSeats((idx * 4 ) + 2)}
                         >
                             {(idx * 4 ) + 2}
@@ -61,13 +61,13 @@ function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
                     </div>
                     <div className="seats-col">
                         <p 
-                            className={seatClass((idx * 4 ) + 3)}
+                            className={seatClass((idx * 4 ) + 3) + ' text2'}
                             onClick={() => updateSelectedSeats((idx * 4 ) + 3)}
                         >
                             {(idx * 4 ) + 3}
                         </p>
                         <p 
-                            className={seatClass((idx * 4 ) + 4)}
+                            className={seatClass((idx * 4 ) + 4) + ' text2'}
                             onClick={() => updateSelectedSeats((idx * 4 ) + 4)}
                         >
                             {(idx * 4 ) + 4}

@@ -63,7 +63,6 @@ main {
 }
 
 .page-heading h3 {
-    font-size: 36px;
     margin-bottom: 0;
     text-transform: uppercase;
 }
@@ -97,7 +96,6 @@ main {
 }
 
 .terminal-change-source p {
-    font-size: 14px;
     color: var(--secondary-7);
     margin: 5px 0;
 }
@@ -137,7 +135,6 @@ main {
 
 .route-name p {
     margin: 0;
-    font-size: 14px;
     color: var(--background);
 }
 
@@ -180,8 +177,6 @@ main {
 
 .route-source p, .route-source-terminal-name p {
     margin: 0;
-    font-size: 14px;
-    /* font-weight: 600; */
     color: var(--neutral-5);
 }
 
@@ -317,7 +312,6 @@ main {
 }
 
 .bus-line-item p {
-    font-size: 14px;
     color: var(--neutral-5);
     font-weight: 600;
 }
@@ -354,11 +348,9 @@ main {
 
 .trip-time .title p, .trip-near-schedule .title p {
     font-weight: bold;
-    font-size: 14px;
 }
 
 .trip-time-detail {
-    font-size: 14px;
     font-weight: bold;
     color: var(--secondary-3);
 }
@@ -369,7 +361,6 @@ main {
 }
 
 .trip-near-schedule-item p {
-    font-size: 14px;
     padding: 5px 10px;
     background-color: var(--secondary-7);
     color: var(--neutral-5);
@@ -384,7 +375,6 @@ main {
 }
 
 .trip-price-title {
-    font-size: 14px;
     font-weight: bold;
 }
 
@@ -416,7 +406,6 @@ main {
 }
 
 .date-picker-field p {
-    font-size: 12px;
     color: red;
     text-align: center;
     margin: 0;
@@ -440,7 +429,6 @@ main {
     outline: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 16px;
     color: var(--neutral-5);
     font-family: "Inter";
     font-weight: 600;
@@ -472,7 +460,6 @@ button {
 }
 
 .schedule-item p {
-    font-size: 14px;
     color: var(--neutral-2);
     margin: 0;
 }
@@ -545,7 +532,7 @@ button {
 }
 
 .color-desc p {
-    font-size: 14px;
+    /* font-size: 14px; */
     color: var(--neutral-2);
     text-align: center;
 }
@@ -582,12 +569,11 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 90%;
+    width: 80%;
     max-width: 500px;
 }
 
 .seats p {
-    font-size: 16px;
     font-weight: bold;
     color: var(--background);
 }
@@ -643,11 +629,6 @@ button {
         width: 48px;
         height: 48px;
     }
-
-    /* .seat {
-        width: 32px;
-        height: 48px;
-    } */
 }
 
 .seat.chosen {
@@ -701,10 +682,6 @@ button {
     justify-content: space-between;
 }
 
-.choose-schedule-date-price p {
-    font-size: 20px;
-}
-
 .select-seat {
     display: flex;
     align-items: center;
@@ -713,7 +690,6 @@ button {
 }
 
 .select-seat p {
-    font-size: 16px;
     color: var(--neutral-5);
 }
 
@@ -723,7 +699,6 @@ p.unavailable {
 
 .select-seat .sm-btn{
     width: fit-content;
-    font-size: 16px;
 }
 
 .bus-line-info {
