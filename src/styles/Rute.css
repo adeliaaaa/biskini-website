@@ -106,6 +106,33 @@ main {
     font-weight: 600;
 }
 
+.terminal-change-select {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    color: var(--secondary-7);
+    font-weight: normal;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.terminal-change-select::after {
+    display: none;
+}
+
+option {
+    color: var(--neutral-5);
+    font-weight: normal;
+    padding: 5px;
+    cursor: pointer;
+}
+
+option:hover {
+    background-color: red;
+}
+
+
 .terminal-change-source hr {
     width: 100%;
     margin: 0;

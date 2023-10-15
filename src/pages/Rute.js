@@ -9,16 +9,21 @@ import BulletNeutralFilledIconImage from "../assets/BulletNeutralFilled.png"
 import BulletPrimaryFilledIconImage from "../assets/BulletPrimaryFilled.png"
 import BulletSecondaryFilledIconImage from "../assets/BulletSecondaryFilled.png"
 import routeData from "../data/route.json"
+import terminalData from "../data/terminal.json"
 import BusLine from "../components/route/BusLine";
 import ChooseSchedule from "../components/route/ChooseSchedule";
 import ChooseSeat from "../components/route/ChooseSeat";
 import Maps from "../components/route/Maps";
 import "../styles/Rute.css";
 import { useSearchParams } from "react-router-dom";
+import DropDownSmall from "../components/route/DropDownSmall";
 
 function Rute() {
 
 	const [searchParams, setSearchParams] = useSearchParams();
+
+	const [terminalOrigin, setTerminalOrigin] = useState(null);
+	const [terminalDestination, setTerminalDestination] = useState(null);
 
 	const [busId, setBusId] = useState(null);
 
@@ -43,6 +48,13 @@ function Rute() {
 	const [passengerCount, setPassengerCount] = useState(0);
 	
 	const [datePickerValidation, setDatePickerValidation] = useState(true);
+
+	const reverseTerminal = () => {
+		const tempOrigin = terminalOrigin;
+
+		setTerminalOrigin(terminalDestination);
+		setTerminalDestination(tempOrigin);
+	}
 
 	const updateBusId = (id) => {
 		setBusId(id);
@@ -169,11 +181,21 @@ function Rute() {
 								</div>
 								<div className="terminal-change">
 									<div className="terminal-change-source">
-										<p className="text3">{routeData.location_origin}</p>
+										<DropDownSmall 
+											data={terminalData.terminal_data} 
+											selectedData={terminalOrigin} 
+											setSelectedData={setTerminalOrigin} 
+											defaultMessage={'Pilih Terminal Keberangkatan'} 
+										/>
 										<hr />
-										<p className="text3">{routeData.location_destination}</p>
+										<DropDownSmall 
+											data={terminalData.terminal_data} 
+											selectedData={terminalDestination} 
+											setSelectedData={setTerminalDestination} 
+											defaultMessage={'Pilih Terminal Tujuan'} 
+										/>
 									</div>
-									<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
+									<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
 								</div>
 								<div className="route-data">
 									{routeData.terminal_data.map((route, idx) => (
@@ -229,10 +251,10 @@ function Rute() {
 									</div>
 									{selectedSchedule === -1 && (
 										<div className="terminal-change bg-none">
-											<img src={ChangeRouteIconImage} className="terminal-change-icon" alt="Change Route Icon" />
+											<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
 											<div className="terminal-change-source bg-none">
-												<p className="text3">{routeData.location_origin}</p>
-												<p className="text3">{routeData.location_destination}</p>
+												<p className="text3">{terminalOrigin}</p>
+												<p className="text3">{terminalDestination}</p>
 											</div>
 										</div>
 									)}
