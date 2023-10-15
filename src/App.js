@@ -5,8 +5,10 @@ import Rute from "./pages/Rute";
 import Bantuan from "./pages/Bantuan";
 import Bus from "./pages/Bus";
 import Live from "./pages/Live";
+import DataDiri from "./pages/DataDiri";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Bayar from "./pages/Bayar";
 
 function App() {
 	return (
@@ -19,6 +21,8 @@ function App() {
 					<Route path="/rute" element={<Rute />} />
 					<Route path="/live" element={<Live />} />
 					<Route path="/bantuan" element={<Bantuan />} />
+					<Route path="/data-diri" element={<DataDiri />} />
+					<Route path="/bayar" element={<Bayar />} />
 				</Routes>
 			</Router>
 		</div>

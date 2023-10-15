@@ -1,0 +1,62 @@
+.personal-data {
+    background-color: var(--primary-7);
+    min-height: calc(100vh - 59px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-data-container {
+    background-color: white;
+    width: 75%;
+    max-width: 800px;
+    margin: 100px 40px;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+
+}
+
+.personal-data-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.personal-data .input-item {
+    gap: 10px;
+}
+
+.personal-data .input-item label {
+    color: var(--neutral-2);
+}
+
+.passenger-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.passenger-list .input-item {
+    flex: 1;
+}
+
+.personal-data-total-price {
+    font-size: 24px;
+    color: var(--secondary-1);
+    font-weight: bold;
+    margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .personal-data-container {
+        width: unset;
+        margin: 50px;
+    }
+}
