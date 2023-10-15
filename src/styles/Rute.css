@@ -532,10 +532,12 @@ button {
 
 .seat.chosen {
     background-color: var(--secondary-2);
+    cursor: pointer;
 }
 
 .seat.empty {
     background-color: var(--primary-2);
+    cursor: pointer;
 }
 
 .seat.driver {
