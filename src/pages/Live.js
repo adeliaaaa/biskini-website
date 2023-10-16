@@ -107,7 +107,7 @@ function Live() {
 					</div>
 				</div>
 				<div className="second-container reverse">
-					<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
+					<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} isMarker={true} />
 				</div>
 			</main>
 		</>
