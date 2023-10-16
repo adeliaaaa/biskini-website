@@ -87,7 +87,7 @@
 	background: var(--secondary-2, #f28475);
 }
 
-/* info bus section */
+/* info bus section 1 */
 .info-section {
 	display: flex;
 	padding: 100px 120px;
@@ -114,11 +114,132 @@
 	text-align: center;
 }
 
+/* info bus section 2 */
+.info2-title {
+	display: flex;
+	padding: 0px 100px;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	text-align: center;
+}
+
+.info2-jalur {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 100px;
+}
+
+.info2-jalur > img {
+	width: 100%;
+	max-width: 360px;
+}
+
+.jalur-container {
+	display: flex;
+	padding-right: 0px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 40px;
+	width: 100%;
+}
+
+.jalur-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.jalur-text2 {
+	font-family: "Inter";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.jalur-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	align-self: stretch;
+}
+
+.jalur-box {
+	display: flex;
+	padding: 20px;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+
+	border-top: 0.5px solid var(--Neutral-1, #8d92a5);
+	border-bottom: 0.5px solid var(--Neutral-1, #8d92a5);
+	background: var(--Neutral-8, #e3e4e8);
+
+	height: fit-content;
+}
+
+.jalur-box:hover {
+	cursor: pointer;
+	background: var(--Neutral-7, #d3d4d8);
+}
+
+.jalur-bus-desc {
+	display: flex;
+	height: 25px;
+	align-items: center;
+	gap: 10px;
+}
+.jalur-name {
+	display: flex;
+	padding: 5px 10px;
+	align-items: center;
+	gap: 5px;
+
+	border-radius: 5px;
+	border: 1px solid var(--Neutral-5, #283148);
+	background: #f8f8fc;
+
+	min-width: 80px;
+	word-break: keep-all;
+}
+
+.jalur-bus-dest {
+	overflow: hidden;
+	white-space: nowrap;
+	display: inline-block;
+	text-overflow: ellipsis;
+	width: 130px;
+	/* width: calc(50%); */
+}
+
+@media only screen and (max-width: 1070px) {
+	.info2-jalur {
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
+
+		width: 100%;
+	}
+	.info2-title {
+		padding: 0;
+	}
+}
+
 @media only screen and (max-width: 550px) {
 	.hide-in-mobile {
 		display: none;
 	}
+
+	.jalur-bus-dest {
+		width: 60px;
+	}
 }
+
 @media only screen and (max-width: 480px) {
 	.title-section {
 		padding: 100px 50px;
@@ -134,5 +255,30 @@
 
 	.info-desc {
 		padding: 0px 0px;
+	}
+
+	.info2-jalur > img {
+		max-width: 200px;
+	}
+
+	.jalur-bus-desc {
+		height: unset;
+		min-height: 25px;
+	}
+
+	.jalur-bus-dest {
+		width: 150px;
+	}
+}
+
+@media only screen and (max-width: 440px) {
+	.jalur-bus-dest {
+		width: 100px;
+	}
+}
+
+@media only screen and (max-width: 390px) {
+	.jalur-bus-dest {
+		width: 70px;
 	}
 }
