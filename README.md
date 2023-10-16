@@ -1,4 +1,4 @@
-# Tugas Besar 2 WBD - PHP APP
+# BisKini Website
 
 ## Deskripsi Aplikasi Web
 Website Biskini adalah website yang berisi informasi secara terpusat dalam penggunaan transportasi umum bus. Website ini memiliki fitur informasi jadwal dan rute bus serta pembelian tiket bus secara online. Website Biskini dapat digunakan pengguna untuk mengakses informasi jadwal dan rute bus secara real-time sehingga dapat memudahkan pengguna untuk mengetahui jadwal dan menentukan mobilisasi saat menggunakan transportasi umum bus. Website ini juga dapat dijadikan sebagai tempat pembelian tiket secara online sehingga pengguna dapat menggunakan hanya satu website untuk berbagai keperluan terhadap akses informasi bus dan juga pembelian tiket secara langsung.  
