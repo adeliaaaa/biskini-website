@@ -11,13 +11,19 @@ function Navbar() {
 	const [isLoginView, setIsLoginView] = useState(false);
 
 	useEffect(() => {
+		console.log('location', location)
 
 		if (location.pathname === '/admin') {
 			setIsLoginView(true);
+			return
+		} else {
+			setIsLoginView(false);
 		}
 
 		if (location.pathname.split('/')[1] === 'admin') {
 			setIsAdminView(true);
+		} else {
+			setIsAdminView(false);
 		}
 
 		const links = document.querySelectorAll(".right-navbar a");
@@ -26,7 +32,9 @@ function Navbar() {
 			link.classList.remove("active");
 
 			if (link.id.split('/')[1] === 'admin') {
-				if (link.id.split('/')[2] === location.pathname.split('/')[2])  link.classList.add("active");
+				if (link.id.split('/')[2] === location.pathname.split('/')[2]) {
+					link.classList.add("active");
+				}  
 			} else {
 				if (link.id === location.pathname) link.classList.add("active");
 			}
