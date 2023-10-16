@@ -1,0 +1,112 @@
+.personal-data {
+    background-color: var(--primary-7);
+    min-height: calc(100vh - 59px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-data-container {
+    background-color: white;
+    width: 75%;
+    max-width: 800px;
+    margin: 100px 40px;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+
+}
+
+.personal-data-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.personal-data .input-item {
+    gap: 10px;
+}
+
+.personal-data .input-item label {
+    color: var(--neutral-2);
+}
+
+.passenger-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .passenger-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+.personal-data-total-price {
+    font-size: 24px;
+    color: var(--secondary-1);
+    font-weight: bold;
+    margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .personal-data-container {
+        width: unset;
+        margin: 50px;
+    }
+}
+
+.confirm-payment {
+    background-color: var(--primary-7);
+    min-height: calc(100vh - 59px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-payment-container {
+    background-color: white;
+    width: 75%;
+    max-width: 800px;
+    margin: 100px 40px;
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+
+}
+
+.success-payment-icon {
+    width: 112px;
+    height: 100%;
+    align-self: center;
+
+}
+
+@media screen and (max-width: 480px) {
+    .confirm-payment-container {
+        width: unset;
+        margin: 50px;
+    }
+}
+
+.error-message {
+    font-family: "Inter";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--red);
+    margin: 0;
+}
