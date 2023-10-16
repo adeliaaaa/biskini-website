@@ -17,7 +17,6 @@ function Agensi() {
 		axios
 			.get("http://localhost:8000/agencies")
 			.then(res => {
-				console.log(res.data)
 				setAgencyData(res.data)
 			})
 
