@@ -43,7 +43,6 @@ function PersonalDataPayment({passengerCount, busData, scheduleData, departureDa
             message.email === '' &&
             message.passengers.every(message => message === '')
         ) {
-            console.log('masuk siniii')
             setIsPayment(true);
         }
         // setIsPayment(true);
