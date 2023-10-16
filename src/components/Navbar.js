@@ -111,6 +111,19 @@ function Navbar() {
 							</Link>
 						</div>
 					)}
+					{isAdminView && expandNav && (
+						<div className="expandable-nav">
+							<Link to="/admin/agensi" id="/admin/agensi">
+								Agensi
+							</Link>
+							<Link to="/admin/bus" id="/admin/bus">
+								Bus
+							</Link>
+							<button className="sign-out-btn" onClick={logout}>
+								SIGN OUT
+							</button>
+						</div>
+					)}
 				</div>
 			</nav>
 		</>
