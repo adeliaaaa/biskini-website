@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ArrowLeftIconImage from "../assets/ArrowLeftIcon.png";
 import ArrowRightIconImage from "../assets/ArrowRightIcon.png";
@@ -21,23 +20,15 @@ import DropDownSmall from "../components/route/DropDownSmall";
 import PersonalDataPayment from "../components/route/PersonalDataPayment";
 
 function Rute() {
+
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const [terminalOriginData, setTerminalOriginData] = useState([]);
-
-	const [terminalDestinationData, setTerminalDestinationData] = useState([]);
-
 	const [terminalOrigin, setTerminalOrigin] = useState(null);
-
 	const [terminalDestination, setTerminalDestination] = useState(null);
-
-	const [busesData, setBusesData] = useState(null);
 
 	const [busId, setBusId] = useState(null);
 
 	const [busData, setBusData] = useState({});
-
-	const [busSchedule, setBusSchedule] = useState(null);
 
 	const [isSchedule, setIsSchedule] = useState(false);
 
@@ -52,10 +43,6 @@ function Rute() {
 	const [selectedSeats, setSelectedSeats] = useState([]);
 
 	const [isCanBuy, setIsCanBuy] = useState(false);
-
-	const [totalPrice, setTotalPrice] = useState(0);
-
-	const [availableSeat, setAvailableSeat] = useState(0);
 
 
 	const [departureDate, setDepartureDate] = useState("");
@@ -84,12 +71,12 @@ function Rute() {
 		setBusId(id);
 		updateBusData(id);
 		setIsSchedule(true);
-		setSearchParams({ ...searchParams, bus_id: id, origin: terminalOrigin, destination: terminalDestination, bus_detail: true });
+		setSearchParams({ ...searchParams, bus_id: id, bus_detail: true });
 	}
 
 	const updateChooseSchedule = () => {
 		setChooseSchedule(true);
-		setSearchParams({ ...searchParams, bus_id: busId, origin: terminalOrigin, destination: terminalDestination, bus_detail: true, choose_schedule: true });
+		setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true });
 	}
 
 	const searchSchedule = (e) => {
@@ -99,25 +86,24 @@ function Rute() {
 		} else {
 			setDatePickerValidation(true);
 			setShowSchedule(true);
-			updateBusSchedule();
-			setSearchParams({ ...searchParams, bus_id: busId, origin: terminalOrigin, destination: terminalDestination, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
 		}
 	}
 
-	const selectScheduleAction = (departureTime, data = {}) => {
-		setSelectedSchedule(departureTime);
+	const selectScheduleAction = (id, data = {}) => {
+		setSelectedSchedule(id);
 		setScheduleData(data);
-		setSearchParams({ ...searchParams, bus_id: busId, origin: terminalOrigin, destination: terminalDestination, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: departureTime });
+		setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount, selected_schedule: id });
 	}
 
 	const unselectRoute = () => {
 		if (searchParams.get('selected_schedule') !== null) {
 			setSelectedSchedule(null);
 			setScheduleData({});
-			setSearchParams({ ...searchParams, bus_id: busId, origin: terminalOrigin, destination: terminalDestination, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true, choose_schedule: true, departure_date: departureDate, passenger_count: passengerCount });
 		} else if (searchParams.get('choose_schedule') !== null) {
 			setChooseSchedule(false);
-			setSearchParams({ ...searchParams, bus_id: busId, origin: terminalOrigin, destination: terminalDestination, bus_detail: true });
+			setSearchParams({ ...searchParams, bus_id: busId, bus_detail: true });
 		} else {
 			setBusId(null);
 			updateBusData(null);
@@ -127,16 +113,18 @@ function Rute() {
 	}
 
 	const updateBusData = (busId) => {
-		if (busId && terminalOrigin && terminalDestination) {
-			getBusDetail(busId, terminalOrigin, terminalDestination);
+		if (busId) {
+			routeData.terminal_data.forEach((terminal) => {
+				terminal.bus_data.forEach((bus) => {
+					if (bus.bus_id === busId) {
+						setBusData(bus);
+					}
+				})
+			})
+		} else {
+			setBusData({});
 		}
-	}
-
-	const updateBusSchedule = () => {
-		if (busId && terminalOrigin && terminalDestination && passengerCount) {
-			console.log("MASUK")
-			getBusSchedule(busId, terminalOrigin, terminalDestination, passengerCount);
-		}
+		
 	}
 
 	const findScheduleById = (scheduleId) => {
@@ -152,168 +140,51 @@ function Rute() {
 		return {};
 	}
 
-	// Backend Integration
-	const timeConvert = (minute) => {
-		return `${('0' + Math.floor(minute / 60)).slice(-2)}:${('0' + Math.round(minute - Math.floor(minute / 60) * 60)).slice(-2)}`;
-	}
-		
-	const getTerminalData = () => {
-		axios.get(
-			`http://localhost:8000/books/stopovers/${terminalDestination ? terminalDestination : ''}`
-		).then(response => {
-			setTerminalOriginData(response.data);
-		})
-		axios.get(
-			`http://localhost:8000/books/stopovers/${terminalOrigin ? terminalOrigin : ''}`
-			).then(response => {
-				setTerminalDestinationData(response.data);
-			})
-	}
+	useEffect(() => {
+		if (searchParams.get('bus_id') !== null) {
+			setBusId(searchParams.get('bus_id'));
+			updateBusData(searchParams.get('bus_id'));
+
+			if (searchParams.get('bus_detail') !== null) {
+				setIsSchedule(true);
+				if (searchParams.get('choose_schedule') !== null) {
+					setChooseSchedule(true);
+					
+					if (searchParams.get('departure_date') !== null && searchParams.get('passenger_count') !== null) {
+						setDepartureDate(searchParams.get('departure_date'));
+						setPassengerCount(parseInt(searchParams.get('passenger_count')));
 	
-	const getBusesData = () => {
-		axios.get(
-			`http://localhost:8000/books/buses/`, {
-				params: {
-					origin: terminalOrigin,
-					destination: terminalDestination,
-				}
-			}
-			).then(response => {
-				const map = new Map();
-				response.data.forEach((datum) => {
-					const key = datum.agencyId;
-					if (map.get(key)) {
-						map.get(key).push(datum);
+						setShowSchedule(true);
+	
+						if (searchParams.get('selected_schedule') !== null) {
+							const selectedScheduleId = searchParams.get('selected_schedule');
+							setSelectedSchedule(selectedScheduleId);
+							setScheduleData(findScheduleById(selectedScheduleId));
+						} else {
+							setSelectedSchedule(-1);
+							setScheduleData({});
+						}
 					} else {
-						map.set(key, [datum]);
+						setDepartureDate("");
+						setPassengerCount(0);
+						setShowSchedule(false);
 					}
-				})	
-
-				setBusesData(map)
-			}
-		);
-	}
-	
-	const getBusDetail = (id, origin, destination) => {
-		axios.get(
-			`http://localhost:8000/books/buses/${id}`, {
-				params: {
-					origin,
-					destination,
+				} else {
+					setChooseSchedule(false);
 				}
+			} else {
+				setIsSchedule(false);
 			}
-		).then(response => {
-				console.log(response.data);
-				setBusData(response.data);
-			}
-		);
-	}
-	
-	const getBusSchedule = (id, origin, destination, numOfPeople) => {
-		axios.get(
-			`http://localhost:8000/books/buses/schedule/${id}`, {
-				params: {
-					origin,
-					destination,
-					numOfPeople
-				}
-			}
-		).then(response => {
-				setBusSchedule(response.data);
-			}
-		);
-	}
-	
-	const getTotalPrice = (id, origin, destination, departureTime, numOfPeople) => {
-		axios.get(
-			`http://localhost:8000/books/buses/availableseat/${id}`, {
-				params: {
-					origin,
-					destination,
-					departureTime,
-					numOfPeople
-				}
-			}
-		).then(response => {
-				setTotalPrice(response.data.totalPrice);
-			}
-		);
-	}
 
-	const rupiah = Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-	})
-	
-	// Page 1
-	useEffect(() => {
-		getTerminalData();
-		
-		if (terminalOrigin && terminalDestination) {
-			getBusesData();
-		}
 
-		if (isSchedule && busId && terminalOrigin && terminalDestination) {
-			getBusDetail(busId, terminalOrigin, terminalDestination);
-		}
-
-		if (showSchedule && busId && terminalOrigin && terminalDestination && passengerCount) {
-			getBusSchedule(busId, terminalOrigin, terminalDestination, passengerCount);
-		}
-
-		if (showSchedule && busId && terminalOrigin && terminalDestination && selectedSchedule && passengerCount) {
-			getTotalPrice(busId, terminalOrigin, terminalDestination, selectedSchedule, passengerCount);
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [terminalOrigin, terminalDestination])
-
-	useEffect(() => {
-		if (searchParams.get('bus_id') === null) {
+		} else {
 			setBusId(null);
 			updateBusData(null);
-			return;
 		}
-		setBusId(searchParams.get('bus_id'));
-		updateBusData(searchParams.get('bus_id'));
-		
-		if (searchParams.get('origin') === null || searchParams.get('destination') === null) {
-			setTerminalOrigin(null);
-			setTerminalDestination(null);
-			return;
-		}
-		setTerminalOrigin(searchParams.get('origin'));
-		setTerminalDestination(searchParams.get('destination'));
 
-		if (searchParams.get('bus_detail') === null) {
-			setIsSchedule(false);
-			return;
-		}
-		setIsSchedule(true);
-		
-		if (searchParams.get('choose_schedule') === null) {
-			setChooseSchedule(false);
-			return;
-		}
-		setChooseSchedule(true);
-		
-		if (searchParams.get('departure_date') === null || searchParams.get('passenger_count') === null) {
-			setDepartureDate("");
-			setPassengerCount(0);
-			setShowSchedule(false);
-			return;
-		}
-		setDepartureDate(searchParams.get('departure_date'));
-		setPassengerCount(parseInt(searchParams.get('passenger_count')));
-		setShowSchedule(true);
+		setTerminalOrigin(terminalData.terminal_data[0])
+		setTerminalDestination(terminalData.terminal_data[1])
 
-		if (searchParams.get('selected_schedule') === null) {
-			setSelectedSchedule(-1);
-			setScheduleData({});
-			return;
-		} 
-		const selectedScheduleId = searchParams.get('selected_schedule');
-		setSelectedSchedule(selectedScheduleId);
-		setScheduleData(findScheduleById(selectedScheduleId));
 	}, [searchParams])
 
 	return (
@@ -333,14 +204,14 @@ function Rute() {
 										<div className="terminal-change">
 											<div className="terminal-change-source">
 												<DropDownSmall 
-													data={terminalOriginData} 
+													data={terminalData.terminal_data} 
 													selectedData={terminalOrigin} 
 													setSelectedData={setTerminalOrigin} 
 													defaultMessage={'Pilih Terminal Keberangkatan'} 
 												/>
 												<hr />
 												<DropDownSmall 
-													data={terminalDestinationData} 
+													data={terminalData.terminal_data} 
 													selectedData={terminalDestination} 
 													setSelectedData={setTerminalDestination} 
 													defaultMessage={'Pilih Terminal Tujuan'} 
@@ -348,38 +219,40 @@ function Rute() {
 											</div>
 											<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
 										</div>
-										{ busesData !== null && (
-											<div className="route-data">
-												{[...busesData.keys()]?.map((agency, idx) => (
-													<div key={idx} className="route-item">
-														<div className="route-name">
-															<p className="text3">{agency}</p>
-														</div>
-														{busesData.get(agency)?.map((bus, idx) => (
-															<div key={idx} className={`route-detail ${busId === bus.id ? 'highlighted' : ''}`}>
-																<div className="route-source cursor-pointer" onClick={() => updateBusId(bus.id)}>
-																	<div className="route-source-terminal">
-																		<div className="route-source-terminal-name">
-																			<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
-																			<p className="text3">{bus.name}</p>
-																		</div>
-																		<p className="text3">{bus.origin} - {bus.destination}</p>
-																	</div>
-																	<p className="text3">Berangkat pada {timeConvert(bus.departureTime)} dari {terminalOrigin}</p>
-																</div>
-																<img src={ArrowRightIconImage} className="route-arrow-icon cursor-pointer" onClick={() => updateShowBusDetail(bus.id)} alt="Arrow Right Icon" />
-															</div>
-														))}
+										<div className="route-data">
+											{routeData.terminal_data?.map((route, idx) => (
+												<div key={idx} className="route-item">
+													<div className="route-name">
+														<p className="text3">{route.terminal_name}</p>
 													</div>
-												))}
-											</div>
-										)}
+													{route.bus_data?.map((bus, idx) => (
+														<div key={idx} className={`route-detail ${busId === bus.bus_id ? 'highlighted' : ''}`}>
+															<div className="route-source cursor-pointer" onClick={() => updateBusId(bus.bus_id)}>
+																<div className="route-source-terminal">
+																	<div className="route-source-terminal-name">
+																		<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
+																		<p className="text3">{bus.bus_name}</p>
+																	</div>
+																	<p className="text3">{bus.terminal_origin} - {bus.terminal_destination}</p>
+																</div>
+																{
+																	bus.schedule.length > 0 && (
+																		<p className="text3">Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
+																	)
+																}
+															</div>
+															<img src={ArrowRightIconImage} className="route-arrow-icon cursor-pointer" onClick={() => updateShowBusDetail(bus.bus_id)} alt="Arrow Right Icon" />
+														</div>
+													))}
+												</div>
+											))}
+										</div>
 									</div>
 								)
 							}
 							
 							{
-								isSchedule && busData !== null && (
+								isSchedule && (
 									<div className="route-detail-bus-trip">
 										<div className="route-detail-container">
 											<div className="route-detail-info">
@@ -388,9 +261,9 @@ function Rute() {
 													<div className="route-source-terminal">
 														<div className="route-source-terminal-name dark">
 															<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
-															<p className="text3">{busData.name}</p>
+															<p className="text3">{busData.bus_name}</p>
 														</div>
-														<p className="text3">{busData.origin} - {busData.destination}</p>
+														<p className="text3">{busData.terminal_origin} - {busData.terminal_destination}</p>
 													</div>
 													<div className="schedule-info">
 														<p className="text3">Lihat Jadwal dan Rute Lengkap</p>
@@ -412,13 +285,13 @@ function Rute() {
 										{
 											!chooseSchedule && selectedSchedule === -1 && (
 												<>
-													<BusLine routeData={busData.routes} />
+													<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
 													<div className="trip-info">
 														<div className="trip-time">
 															<div className="title">
 																<p className="text3">Estimasi Perjalanan</p>
 															</div>
-															<p className="trip-time-detail text3">{busData.duration}</p>
+															<p className="trip-time-detail text3">{busData.time_duration}</p>
 														</div>
 														<div className="trip-near-schedule">
 															<div className="title">
@@ -426,9 +299,9 @@ function Rute() {
 															</div>
 															<div className="trip-near-schedule-item">
 																{
-																	busData.scheduleTimes?.map((time, idx) => (
+																	busData.schedule?.map((schedule, idx) => (
 																		idx < 3 && (
-																			<p key={idx} className="text3">{time}</p>
+																			<p key={idx} className="text3">{schedule.departure_time}</p>
 																		)
 																	))
 																}
@@ -436,7 +309,7 @@ function Rute() {
 														</div>
 														<div className="trip-price">
 															<p className="trip-price-title text3">Harga</p>
-															<p className="trip-price-item">{rupiah.format(busData.minPrice).slice(0, -3)} - {rupiah.format(busData.maxPrice).slice(0, -3)}</p>
+															<p className="trip-price-item">{busData.min_price} - {busData.max_price}</p>
 														</div>
 														<button onClick={updateChooseSchedule}>PILIH JADWAL</button>
 													</div>
@@ -476,15 +349,15 @@ function Rute() {
 														<div className="schedule-item">
 															<p className="text3">Tujuan Keberangkatan</p>
 															<div className="schedule-item-detail">
-																<p className="text3">{busData.routes[0].name}</p>
-																<p className="text3">{busData.routes[busData.routes.length - 1].name}</p>
+																<p className="text3">{busData.route[0].name}</p>
+																<p className="text3">{busData.route[busData.route.length - 1].name}</p>
 															</div>
 														</div>
 														<div className="schedule-item">
 															<p className="text3">Tanggal Keberangkatan</p>
 															<div className="schedule-item-detail">
 																<p className="text3">{departureDate}</p>
-																<p className="text3"><span className="font-bold">{scheduleData.departureTime}</span> - {scheduleData.arrivalTime}</p>
+																<p className="text3"><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
 															</div>
 														</div>
 														<div className="schedule-item">
@@ -520,10 +393,10 @@ function Rute() {
 											</div>
 											<div className="choose-schedule">
 												{
-													showSchedule && busSchedule !== null ? (
-														busSchedule.schedules.length > 0 ? (
-															busSchedule.schedules?.map((schedule, idx) => (
-																<ChooseSchedule key={idx} busData={busSchedule} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
+													showSchedule ? (
+														busData.schedule.length > 0 ? (
+															busData.schedule?.map((schedule, idx) => (
+																<ChooseSchedule key={idx} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
 															))
 														) : (
 															<p>Tidak ada jadwal yang tersedia</p>
