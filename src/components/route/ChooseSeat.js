@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../../styles/Rute.css";
 
-function ChooseSeat({ seatAvailable, passengerCount, setIsCanBuy }) {
+function ChooseSeat({ selectedSeats, setSelectedSeats, seatAvailable, passengerCount, setIsCanBuy }) {
 
-    const [selectedSeats, setSelectedSeats] = useState([]);
+    // const [selectedSeats, setSelectedSeats] = useState([]);
 
     const seatClass = (seat) => {
         if (selectedSeats.includes(seat)) {

@@ -15,8 +15,9 @@ import ChooseSchedule from "../components/route/ChooseSchedule";
 import ChooseSeat from "../components/route/ChooseSeat";
 import Maps from "../components/route/Maps";
 import "../styles/Rute.css";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import DropDownSmall from "../components/route/DropDownSmall";
+import PersonalDataPayment from "../components/route/PersonalDataPayment";
 
 function Rute() {
 
@@ -39,6 +40,8 @@ function Rute() {
 
 	const [scheduleData, setScheduleData] = useState({}); 
 
+	const [selectedSeats, setSelectedSeats] = useState([]);
+
 	const [isCanBuy, setIsCanBuy] = useState(false);
 
 
@@ -47,6 +50,8 @@ function Rute() {
 	const [passengerCount, setPassengerCount] = useState(0);
 	
 	const [datePickerValidation, setDatePickerValidation] = useState(true);
+
+	const [isPersonalData, setIsPersonalData] = useState(false);
 
 	const reverseTerminal = () => {
 		const tempOrigin = terminalOrigin;
@@ -184,305 +189,283 @@ function Rute() {
 
 	return (
 		<>
-			<main>
-				<div className={`route ${!chooseSchedule ? 'reverse' : ''}`}>
-					{/* RUTE VIEW - 1 */}
-					{
-						!isSchedule && (
-							<div className="route-info">
-								<div className="page-heading">
-									<h3 className="page-heading-color1">Info</h3>
-									<h3 className="page-heading-color2">Rute {isSchedule}</h3>
-								</div>
-								<div className="terminal-change">
-									<div className="terminal-change-source">
-										<DropDownSmall 
-											data={terminalData.terminal_data} 
-											selectedData={terminalOrigin} 
-											setSelectedData={setTerminalOrigin} 
-											defaultMessage={'Pilih Terminal Keberangkatan'} 
-										/>
-										<hr />
-										<DropDownSmall 
-											data={terminalData.terminal_data} 
-											selectedData={terminalDestination} 
-											setSelectedData={setTerminalDestination} 
-											defaultMessage={'Pilih Terminal Tujuan'} 
-										/>
-									</div>
-									<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
-								</div>
-								<div className="route-data">
-									{routeData.terminal_data?.map((route, idx) => (
-										<div key={idx} className="route-item">
-											<div className="route-name">
-												<p className="text3">{route.terminal_name}</p>
+			{
+				!isPersonalData && (
+					<main>
+						<div className={`route ${!chooseSchedule ? 'reverse' : ''}`}>
+							{/* RUTE VIEW - 1 */}
+							{
+								!isSchedule && (
+									<div className="route-info">
+										<div className="page-heading">
+											<h3 className="page-heading-color1">Info</h3>
+											<h3 className="page-heading-color2">Rute {isSchedule}</h3>
+										</div>
+										<div className="terminal-change">
+											<div className="terminal-change-source">
+												<DropDownSmall 
+													data={terminalData.terminal_data} 
+													selectedData={terminalOrigin} 
+													setSelectedData={setTerminalOrigin} 
+													defaultMessage={'Pilih Terminal Keberangkatan'} 
+												/>
+												<hr />
+												<DropDownSmall 
+													data={terminalData.terminal_data} 
+													selectedData={terminalDestination} 
+													setSelectedData={setTerminalDestination} 
+													defaultMessage={'Pilih Terminal Tujuan'} 
+												/>
 											</div>
-											{route.bus_data?.map((bus, idx) => (
-												<div key={idx} className={`route-detail ${busId === bus.bus_id ? 'highlighted' : ''}`}>
-													<div className="route-source cursor-pointer" onClick={() => updateBusId(bus.bus_id)}>
-														<div className="route-source-terminal">
-															<div className="route-source-terminal-name">
-																<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
-																<p className="text3">{bus.bus_name}</p>
-															</div>
-															<p className="text3">{bus.terminal_origin} - {bus.terminal_destination}</p>
-														</div>
-														{
-															bus.schedule.length > 0 && (
-																<p className="text3">Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
-															)
-														}
+											<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
+										</div>
+										<div className="route-data">
+											{routeData.terminal_data?.map((route, idx) => (
+												<div key={idx} className="route-item">
+													<div className="route-name">
+														<p className="text3">{route.terminal_name}</p>
 													</div>
-													<img src={ArrowRightIconImage} className="route-arrow-icon cursor-pointer" onClick={() => updateShowBusDetail(bus.bus_id)} alt="Arrow Right Icon" />
+													{route.bus_data?.map((bus, idx) => (
+														<div key={idx} className={`route-detail ${busId === bus.bus_id ? 'highlighted' : ''}`}>
+															<div className="route-source cursor-pointer" onClick={() => updateBusId(bus.bus_id)}>
+																<div className="route-source-terminal">
+																	<div className="route-source-terminal-name">
+																		<img src={BusIconImage} className="route-bus-icon" alt="Bus Icon" />
+																		<p className="text3">{bus.bus_name}</p>
+																	</div>
+																	<p className="text3">{bus.terminal_origin} - {bus.terminal_destination}</p>
+																</div>
+																{
+																	bus.schedule.length > 0 && (
+																		<p className="text3">Berangkat pada {bus.schedule[0].departure_time} dari {bus.terminal_origin}</p>
+																	)
+																}
+															</div>
+															<img src={ArrowRightIconImage} className="route-arrow-icon cursor-pointer" onClick={() => updateShowBusDetail(bus.bus_id)} alt="Arrow Right Icon" />
+														</div>
+													))}
 												</div>
 											))}
 										</div>
-									))}
-								</div>
-							</div>
-						)
-					}
-					
-					{
-						isSchedule && (
-							<div className="route-detail-bus-trip">
-								<div className="route-detail-container">
-									<div className="route-detail-info">
-										<img src={ArrowLeftIconImage} className="route-arrow-icon cursor-pointer" alt="Arrow Right Icon" onClick={unselectRoute} />
-										<div className="route-source">
-											<div className="route-source-terminal">
-												<div className="route-source-terminal-name dark">
-													<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
-													<p className="text3">{busData.bus_name}</p>
-												</div>
-												<p className="text3">{busData.terminal_origin} - {busData.terminal_destination}</p>
-											</div>
-											<div className="schedule-info">
-												<p className="text3">Lihat Jadwal dan Rute Lengkap</p>
-												<img src={ArrowRightBoldIconImage} className="route-arrow-icon-small" alt="Arrow Right Icon" />
-											</div>
-										</div>
 									</div>
-									{selectedSchedule === -1 && (
-										<div className="terminal-change bg-none">
-											<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
-											<div className="terminal-change-source bg-none">
-												<p className="text3">{terminalOrigin}</p>
-												<p className="text3">{terminalDestination}</p>
+								)
+							}
+							
+							{
+								isSchedule && (
+									<div className="route-detail-bus-trip">
+										<div className="route-detail-container">
+											<div className="route-detail-info">
+												<img src={ArrowLeftIconImage} className="route-arrow-icon cursor-pointer" alt="Arrow Right Icon" onClick={unselectRoute} />
+												<div className="route-source">
+													<div className="route-source-terminal">
+														<div className="route-source-terminal-name dark">
+															<img src={BusWhiteIconImage} className="route-bus-icon" alt="Bus Icon" />
+															<p className="text3">{busData.bus_name}</p>
+														</div>
+														<p className="text3">{busData.terminal_origin} - {busData.terminal_destination}</p>
+													</div>
+													<div className="schedule-info">
+														<p className="text3">Lihat Jadwal dan Rute Lengkap</p>
+														<img src={ArrowRightBoldIconImage} className="route-arrow-icon-small" alt="Arrow Right Icon" />
+													</div>
+												</div>
 											</div>
+											{selectedSchedule === -1 && (
+												<div className="terminal-change bg-none">
+													<img src={ChangeRouteIconImage} onClick={reverseTerminal} className="terminal-change-icon cursor-pointer" alt="Change Route Icon" />
+													<div className="terminal-change-source bg-none">
+														<p className="text3">{terminalOrigin}</p>
+														<p className="text3">{terminalDestination}</p>
+													</div>
+												</div>
+											)}
 										</div>
-									)}
-								</div>
 
-								{
-									!chooseSchedule && selectedSchedule === -1 && (
-										<>
-											<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
-											<div className="trip-info">
-												<div className="trip-time">
-													<div className="title">
-														<p className="text3">Estimasi Perjalanan</p>
-													</div>
-													<p className="trip-time-detail text3">{busData.time_duration}</p>
-												</div>
-												<div className="trip-near-schedule">
-													<div className="title">
-														<p className="text3">Jadwal Terdekat</p>
-													</div>
-													<div className="trip-near-schedule-item">
-														{
-															busData.schedule?.map((schedule, idx) => (
-																idx < 3 && (
-																	<p key={idx} className="text3">{schedule.departure_time}</p>
-																)
-															))
-														}
-													</div>
-												</div>
-												<div className="trip-price">
-													<p className="trip-price-title text3">Harga</p>
-													<p className="trip-price-item">{busData.min_price} - {busData.max_price}</p>
-												</div>
-												<button onClick={updateChooseSchedule}>PILIH JADWAL</button>
-											</div>
-										</>
-									) 
-								}
-								{	
-									chooseSchedule && selectedSchedule === -1 &&
-									(
-										<div className="date-picker-field">
-											<form>
-												<div className="input-item">
-													<label htmlFor="departure-date">Tanggal Keberangkatan</label>
-													<input type="date" id="departure-date" name="departure-date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
-												</div>
-												<div className="input-item">
-													<label htmlFor="passenger-count">Jumlah Penumpang</label>
-													<input type="number" id="passenger-count" name="passenger-count" value={passengerCount} onChange={(e) => setPassengerCount(e.target.value)} />
-												</div>
-												{!datePickerValidation && (
-													<p className="text3">Pastikan telah memilih tanggal Keberangkatan dan jumlah penumpang</p>
-												)}
-												<button onClick={(e) => searchSchedule(e)}>CARI JADWAL</button>
-											</form>
-										</div>
-									)
-								}
-
-								{
-									selectedSchedule !== -1 && (
-										<div className="schedule-detail">
-											<div className="page-heading">
-												<h3 className="page-heading-color1">PILIHAN</h3>
-												<h3 className="page-heading-color2">JADWAL</h3>
-											</div>
-											<div className="schedule">
-												<div className="schedule-item">
-													<p className="text3">Tujuan Keberangkatan</p>
-													<div className="schedule-item-detail">
-														<p className="text3">{busData.route[0].name}</p>
-														<p className="text3">{busData.route[busData.route.length - 1].name}</p>
-													</div>
-												</div>
-												<div className="schedule-item">
-													<p className="text3">Tanggal Keberangkatan</p>
-													<div className="schedule-item-detail">
-														<p className="text3">{departureDate}</p>
-														<p className="text3"><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
-													</div>
-												</div>
-												<div className="schedule-item">
-													<p className="text3">Jumlah Penumpang</p>
-													<div className="schedule-item-detail">
-														<p className="text3">{passengerCount} Orang</p>
-													</div>
-												</div>
-												<div className="schedule-item">
-													<p className="text3">Harga</p>
-													<p className="text1 schedule-item-price">{scheduleData?.price}</p>
-												</div>
-												<Link to="/data-diri" className="link-none">
-													<button disabled={!isCanBuy}>ISI DATA DIRI</button>
-												</Link>
-											</div>
-										</div>
-									)
-								}
-							</div>
-						)
-					}
-				</div>
-				<div className={`second-container ${!chooseSchedule ? 'reverse' : ''}`}>
-					{!chooseSchedule && selectedSchedule === -1 && (
-						<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
-					)}
-					{
-						chooseSchedule && selectedSchedule === -1 && (
-							<>
-								<div className="choose-schedule-container">
-									<div className="page-heading">
-										<h3 className="page-heading-color1">PILIHAN</h3>
-										<h3 className="page-heading-color2">Jadwal</h3>
-									</div>
-									<div className="choose-schedule">
 										{
-											showSchedule ? (
-												busData.schedule.length > 0 ? (
-													busData.schedule?.map((schedule, idx) => (
-														<ChooseSchedule key={idx} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
-													))
-												) : (
-													<p>Tidak ada jadwal yang tersedia</p>
-												)
-											) : (
-												<p>Belum ada jadwal yang dipilih</p>
+											!chooseSchedule && selectedSchedule === -1 && (
+												<>
+													<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
+													<div className="trip-info">
+														<div className="trip-time">
+															<div className="title">
+																<p className="text3">Estimasi Perjalanan</p>
+															</div>
+															<p className="trip-time-detail text3">{busData.time_duration}</p>
+														</div>
+														<div className="trip-near-schedule">
+															<div className="title">
+																<p className="text3">Jadwal Terdekat</p>
+															</div>
+															<div className="trip-near-schedule-item">
+																{
+																	busData.schedule?.map((schedule, idx) => (
+																		idx < 3 && (
+																			<p key={idx} className="text3">{schedule.departure_time}</p>
+																		)
+																	))
+																}
+															</div>
+														</div>
+														<div className="trip-price">
+															<p className="trip-price-title text3">Harga</p>
+															<p className="trip-price-item">{busData.min_price} - {busData.max_price}</p>
+														</div>
+														<button onClick={updateChooseSchedule}>PILIH JADWAL</button>
+													</div>
+												</>
+											) 
+										}
+										{	
+											chooseSchedule && selectedSchedule === -1 &&
+											(
+												<div className="date-picker-field">
+													<form>
+														<div className="input-item">
+															<label htmlFor="departure-date">Tanggal Keberangkatan</label>
+															<input type="date" id="departure-date" name="departure-date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
+														</div>
+														<div className="input-item">
+															<label htmlFor="passenger-count">Jumlah Penumpang</label>
+															<input type="number" id="passenger-count" name="passenger-count" value={passengerCount} onChange={(e) => setPassengerCount(e.target.value)} />
+														</div>
+														{!datePickerValidation && (
+															<p className="text3">Pastikan telah memilih tanggal Keberangkatan dan jumlah penumpang</p>
+														)}
+														<button onClick={(e) => searchSchedule(e)}>CARI JADWAL</button>
+													</form>
+												</div>
+											)
+										}
+
+										{
+											selectedSchedule !== -1 && (
+												<div className="schedule-detail">
+													<div className="page-heading">
+														<h3 className="page-heading-color1">PILIHAN</h3>
+														<h3 className="page-heading-color2">JADWAL</h3>
+													</div>
+													<div className="schedule">
+														<div className="schedule-item">
+															<p className="text3">Tujuan Keberangkatan</p>
+															<div className="schedule-item-detail">
+																<p className="text3">{busData.route[0].name}</p>
+																<p className="text3">{busData.route[busData.route.length - 1].name}</p>
+															</div>
+														</div>
+														<div className="schedule-item">
+															<p className="text3">Tanggal Keberangkatan</p>
+															<div className="schedule-item-detail">
+																<p className="text3">{departureDate}</p>
+																<p className="text3"><span className="font-bold">{scheduleData.departure_time}</span> - {scheduleData.arrival_time}</p>
+															</div>
+														</div>
+														<div className="schedule-item">
+															<p className="text3">Jumlah Penumpang</p>
+															<div className="schedule-item-detail">
+																<p className="text3">{passengerCount} Orang</p>
+															</div>
+														</div>
+														<div className="schedule-item">
+															<p className="text3">Harga</p>
+															<p className="text1 schedule-item-price">{scheduleData?.price}</p>
+														</div>
+														<button disabled={!isCanBuy} onClick={() => setIsPersonalData(true)}>ISI DATA DIRI</button>
+													</div>
+												</div>
 											)
 										}
 									</div>
-								</div>
-								<div className="bus-line-info">
-									<div className="page-heading">
-										<h3 className="page-heading-color1">Info</h3>
-										<h3 className="page-heading-color2">Rute</h3>
+								)
+							}
+						</div>
+						<div className={`second-container ${!chooseSchedule ? 'reverse' : ''}`}>
+							{!chooseSchedule && selectedSchedule === -1 && (
+								<Maps routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} />
+							)}
+							{
+								chooseSchedule && selectedSchedule === -1 && (
+									<>
+										<div className="choose-schedule-container">
+											<div className="page-heading">
+												<h3 className="page-heading-color1">PILIHAN</h3>
+												<h3 className="page-heading-color2">Jadwal</h3>
+											</div>
+											<div className="choose-schedule">
+												{
+													showSchedule ? (
+														busData.schedule.length > 0 ? (
+															busData.schedule?.map((schedule, idx) => (
+																<ChooseSchedule key={idx} busData={busData} scheduleIdx={idx} passengerCount={passengerCount} selectScheduleAction={selectScheduleAction} />
+															))
+														) : (
+															<p>Tidak ada jadwal yang tersedia</p>
+														)
+													) : (
+														<p>Belum ada jadwal yang dipilih</p>
+													)
+												}
+											</div>
+										</div>
+										<div className="bus-line-info">
+											<div className="page-heading">
+												<h3 className="page-heading-color1">Info</h3>
+												<h3 className="page-heading-color2">Rute</h3>
+											</div>
+											<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} chooseSchedule={chooseSchedule} />
+										</div>
+									</>
+								)
+							}
+							{
+								selectedSchedule !== -1 && (
+									<div className="seats-container">
+										<div className="page-heading">
+											<h3 className="page-heading-color1">PILIHAN</h3>
+											<h3 className="page-heading-color2">KURSI</h3>
+										</div>
+										<div className="color-desc">
+											<p className="text3">Keterangan Warna</p>
+											<div className="color-desc-detail">
+												<div className="color-desc-item">
+													<img src={BulletSecondaryFilledIconImage} alt="Bullet Filled Icon" />
+													<p className="text3">Dipilih</p>
+												</div>
+												<div className="color-desc-item">
+													<img src={BulletPrimaryFilledIconImage} alt="Bullet Filled Icon" />
+													<p className="text3">Kosong</p>
+												</div>
+												<div className="color-desc-item">
+													<img src={BulletNeutralFilledIconImage} alt="Bullet Filled Icon" />
+													<p className="text3">Terisi</p>
+												</div>
+											</div>
+										</div>
+										<ChooseSeat 
+											selectedSeats={selectedSeats}
+											setSelectedSeats={setSelectedSeats}
+											seatAvailable={scheduleData.seat_available} 
+											passengerCount={passengerCount} 
+											setIsCanBuy={setIsCanBuy}
+										/>
 									</div>
-									<BusLine routeData={busData.route  ? busData.route : routeData.terminal_data[0].bus_data[0].route} chooseSchedule={chooseSchedule} />
-								</div>
-							</>
-						)
-					}
-					{
-						selectedSchedule !== -1 && (
-							// <div>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// 	<p>hahaha</p>
-							// </div>
-							<div className="seats-container">
-								<div className="page-heading">
-									<h3 className="page-heading-color1">PILIHAN</h3>
-									<h3 className="page-heading-color2">KURSI</h3>
-								</div>
-								<div className="color-desc">
-									<p className="text3">Keterangan Warna</p>
-									<div className="color-desc-detail">
-										<div className="color-desc-item">
-											<img src={BulletSecondaryFilledIconImage} alt="Bullet Filled Icon" />
-											<p className="text3">Dipilih</p>
-										</div>
-										<div className="color-desc-item">
-											<img src={BulletPrimaryFilledIconImage} alt="Bullet Filled Icon" />
-											<p className="text3">Kosong</p>
-										</div>
-										<div className="color-desc-item">
-											<img src={BulletNeutralFilledIconImage} alt="Bullet Filled Icon" />
-											<p className="text3">Terisi</p>
-										</div>
-									</div>
-								</div>
-								<ChooseSeat 
-									seatAvailable={scheduleData.seat_available} 
-									passengerCount={passengerCount} 
-									setIsCanBuy={setIsCanBuy}
-								/>
-							</div>
-						)
-					}
-				</div>
-			</main>
+								)
+							}
+						</div>
+					</main>
+				)
+			}
+			{
+				isPersonalData && (
+					<PersonalDataPayment  
+						busData={busData} 
+						departureDate={departureDate} 
+						scheduleData={scheduleData} 
+						passengerCount={passengerCount} 
+						selectedSeats={selectedSeats}
+					/>
+				)
+			}
 		</>
 	);
 }
