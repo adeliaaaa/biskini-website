@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/PersonalDataPayment.css"
-import { Link } from "react-router-dom";
 import SuccessPaymentIconImage from "../../assets/SuccessPaymentIcon.png"
 
 function PersonalDataPayment({passengerCount, busData, scheduleData, departureDate, selectedSeats}) {
