@@ -14,6 +14,7 @@ import routeData from "../data/route.json";
 
 import Footer from "../components/Footer";
 import "../styles/Bus.css";
+import Maps from "../components/route/Maps";
 
 function Bus() {
 	const page1 = [
@@ -321,10 +322,9 @@ function Bus() {
 										</div>
 									</div>
 									<div className="maps-container">
-										{/* DISI ADELLINE */}
-										{/* <Maps
-										routeData={routeData.terminal_data[0].bus_data[0].route}
-									/> */}
+										<Maps
+											routeData={routeData.terminal_data[0].bus_data[0].route}
+										/>
 									</div>
 								</div>
 							</div>
