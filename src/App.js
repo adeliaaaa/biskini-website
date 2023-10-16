@@ -33,6 +33,7 @@ function App() {
 					<Route path="/admin/bus" element={<BusAdmin />} />
 					<Route path="/admin/bus/add" element={<CreateBus />} />
 					<Route path="/admin/bus/edit" element={<EditBus />} />
+
 				</Routes>
 			</Router>
 		</div>
