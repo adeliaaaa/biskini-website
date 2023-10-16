@@ -25,7 +25,7 @@ function DropDownSmall({data, selectedData, setSelectedData, defaultMessage}) {
                 <ul className="dropdown-sm-lists">
                     {
                         data.map((terminal) => (
-                            <li className="dropdown-sm-list text3" onClick={() => setDropDownValue(terminal)}>{terminal}</li>
+                            <li className="dropdown-sm-list text3" key={terminal} onClick={() => setDropDownValue(terminal)}>{terminal}</li>
                         ))
                     }
                 </ul>
