@@ -74,6 +74,7 @@ function Bus() {
 	const [chooseAgenName, setChooseAgenName] = useState("");
 
 	const [selectBus, setSelectBus] = useState(false);
+	const [busName, setBusName] = useState("");
 
 	const dropMenu = useRef(null);
 
@@ -104,11 +105,13 @@ function Bus() {
 		} else {
 			setChooseAgen(true);
 			setChooseAgenName(selectedAgensi);
+			setSelectBus(false);
 		}
 	};
 
-	const handleSelectBus = (id) => {
+	const handleSelectBus = (id, name) => {
 		setSelectBus(true);
+		setBusName(id, name);
 	};
 
 	return (
@@ -187,7 +190,7 @@ function Bus() {
 										<div
 											className="jalur-box"
 											key={bus.id}
-											onClick={() => handleSelectBus(bus.id)}
+											onClick={() => handleSelectBus(bus.id, bus.name)}
 										>
 											<div className="jalur-bus-desc text3">
 												<div className="jalur-name">
@@ -213,7 +216,7 @@ function Bus() {
 								<div className="jalur-operasional">
 									<div className="jalur-ops-head">
 										<img src={ArrowLeftIcon} alt="bus" />
-										<h3>TMB K1</h3>
+										<h3>{busName}</h3>
 									</div>
 									<div className="jalur-ops-title">
 										<h4>Jalur Operasional</h4>
