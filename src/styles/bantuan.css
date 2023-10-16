@@ -1,0 +1,66 @@
+.bantuan-page {
+	display: flex;
+	padding: 100px 120px;
+
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 40px;
+	align-items: center;
+}
+
+.right-side {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.saran-text {
+	color: var(--neutral-4, #363f51);
+}
+
+.saran-field {
+	display: flex;
+	flex-direction: column;
+
+	gap: 20px;
+}
+
+.saran-field > input {
+	border-radius: 10px;
+	background: var(--neutral-8, #e3e4e8);
+	padding: 15px 20px;
+	border: none;
+	outline: none;
+
+	color: var(--neutral-5, #283148);
+	font-family: "Inter";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.saran-field > textarea {
+	border-radius: 10px;
+	background: var(--neutral-8, #e3e4e8);
+	padding: 15px 20px;
+	border: none;
+	outline: none;
+
+	color: var(--neutral-5, #283148);
+	font-family: "Inter";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	height: 120px;
+	resize: none;
+}
+
+@media only screen and (max-width: 480px) {
+	.bantuan-page {
+		padding: 100px 50px;
+	}
+}
