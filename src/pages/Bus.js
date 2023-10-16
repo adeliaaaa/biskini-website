@@ -5,6 +5,13 @@ import InfoBusSelectAgent from "../assets/InfoBusSelect.png";
 import InfoBus2Bike from "../assets/InfoBus2Bike.png";
 import ArrowRightIcon from "../assets/InfoBus2ArrowRight.png";
 import BusIconImage from "../assets/BusIcon.png";
+import ArrowLeftIcon from "../assets/ArrowLeftIcon.png";
+import BusLine from "../components/route/BusLine";
+import ChangeRouteIconImage from "../assets/ChangeRouteIcon.png";
+
+// import Maps from "../components/route/Maps";
+import routeData from "../data/route.json";
+
 import Footer from "../components/Footer";
 import "../styles/Bus.css";
 
@@ -65,9 +72,9 @@ function Bus() {
 	const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 	const [chooseAgen, setChooseAgen] = useState(false);
 	const [chooseAgenName, setChooseAgenName] = useState("");
-	// const [page1111, setPage1] = useState(true);
-	// const [page22222 , setPage2] = useState(false);
-	// const [page3, setPage3] = useState(false);
+
+	const [selectBus, setSelectBus] = useState(false);
+
 	const dropMenu = useRef(null);
 
 	const closeOpenMenus = (e) => {
@@ -98,6 +105,10 @@ function Bus() {
 			setChooseAgen(true);
 			setChooseAgenName(selectedAgensi);
 		}
+	};
+
+	const handleSelectBus = (id) => {
+		setSelectBus(true);
 	};
 
 	return (
@@ -161,35 +172,161 @@ function Bus() {
 							Bandung dengan 62 pemberhentian.
 						</div>
 					</div>
-					<div className="info2-jalur">
-						<div className="jalur-container">
-							<div className="jalur-title">
-								<h4>Jalur</h4>
-								<div className="jalur-text2">
-									Untuk melihat Bis waktu, jadwal, dan pemberhentian yang
-									diperbarui, silakan klik pada rute di bawah ini
+					{!selectBus && (
+						<div className="info2-jalur">
+							<div className="jalur-container">
+								<div className="jalur-title">
+									<h4>Jalur</h4>
+									<div className="jalur-text2">
+										Untuk melihat Bis waktu, jadwal, dan pemberhentian yang
+										diperbarui, silakan klik pada rute di bawah ini
+									</div>
+								</div>
+								<div className="jalur-content">
+									{page2.buses.map((bus) => (
+										<div
+											className="jalur-box"
+											key={bus.id}
+											onClick={() => handleSelectBus(bus.id)}
+										>
+											<div className="jalur-bus-desc text3">
+												<div className="jalur-name">
+													<img src={BusIconImage} alt="bus" width={12} />
+													{bus.name}
+												</div>
+												<div className="jalur-bus-dest">
+													{bus.origin} - {bus.destination}
+												</div>
+											</div>
+											<img src={ArrowRightIcon} alt="arrow" />
+										</div>
+									))}
 								</div>
 							</div>
-							<div className="jalur-content">
-								{page2.buses.map((bus) => (
-									<div className="jalur-box" key={bus.id}>
-										<div className="jalur-bus-desc text3">
-											<div className="jalur-name">
-												<img src={BusIconImage} alt="bus" width={12} />
-												{bus.name}
-											</div>
-											<div className="jalur-bus-dest">
-												{bus.origin} - {bus.destination}
+
+							<img src={InfoBus2Bike} alt="jalur" />
+						</div>
+					)}
+					{selectBus && (
+						<>
+							<div className="info3-bus">
+								<div className="jalur-operasional">
+									<div className="jalur-ops-head">
+										<img src={ArrowLeftIcon} alt="bus" />
+										<h3>TMB K1</h3>
+									</div>
+									<div className="jalur-ops-title">
+										<h4>Jalur Operasional</h4>
+										<div className="text2">
+											Untuk melihat Bis waktu, jadwal, dan pemberhentian yang
+											diperbarui, silakan klik pada rute di bawah ini
+										</div>
+									</div>
+
+									<div className="bus-line-container">
+										<div className="bus-line-head">
+											<img
+												src={ChangeRouteIconImage}
+												alt="Change Route Icon"
+												width={28}
+												height={28}
+											/>
+											<div className="text3">
+												<div>{routeData.location_origin}</div>
+												<div>{routeData.location_destination}</div>
 											</div>
 										</div>
-										<img src={ArrowRightIcon} alt="arrow" width={24} />
+										<BusLine
+											routeData={routeData.terminal_data[0].bus_data[0].route}
+										/>
 									</div>
-								))}
+								</div>
+								<div className="jadwal-operasional">
+									<div className="jalur-ops-title">
+										<h4>Jadwal Operasional</h4>
+										<div className="text2">
+											Untuk melihat Bis waktu, jadwal, dan pemberhentian yang
+											diperbarui, silakan klik pada rute di bawah ini
+										</div>
+									</div>
+									<div className="jadwal-ops-table">
+										<table>
+											<thead>
+												<tr>
+													<th>Hari</th>
+													<th>Jadwal</th>
+													<th>Frekuensi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Senin</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Selasa</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Rabu</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Kamis</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Jumat</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Sabtu</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+												<tr>
+													<td>Minggu</td>
+													<td>05.30 - 17.30</td>
+													<td>40 menit</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div className="jadwal-ops-tarif">
+										<h4>Tarif</h4>
+										<div className="text2">
+											Tarif berada di rentang{" "}
+											<span className="color-red">
+												Rp10.000 hingga Rp15.000
+											</span>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-
-						<img src={InfoBus2Bike} alt="jalur" />
-					</div>
+							<div className="info3-bus">
+								<div className="peta-jalur">
+									<div className="peta-jlr-title">
+										<h4>Peta Jalur</h4>
+										<div className="text2">
+											Untuk melihat Bis waktu, jadwal, dan pemberhentian yang
+											diperbarui, silakan klik pada rute di bawah ini
+										</div>
+									</div>
+									<div className="maps-container">
+										{/* DISI ADELLINE */}
+										{/* <Maps
+										routeData={routeData.terminal_data[0].bus_data[0].route}
+									/> */}
+									</div>
+								</div>
+							</div>
+						</>
+					)}
 				</div>
 			)}
 			<Footer />

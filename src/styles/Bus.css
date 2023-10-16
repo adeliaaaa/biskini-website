@@ -58,7 +58,7 @@
 	border-radius: 10px;
 
 	width: 100%;
-	background: var(--Neutral-8, #e3e4e8);
+	background: var(--neutral-8, #e3e4e8);
 }
 
 .dropdown-lists > li {
@@ -178,7 +178,7 @@
 
 	border-top: 0.5px solid var(--Neutral-1, #8d92a5);
 	border-bottom: 0.5px solid var(--Neutral-1, #8d92a5);
-	background: var(--Neutral-8, #e3e4e8);
+	background: var(--neutral-8, #e3e4e8);
 
 	height: fit-content;
 }
@@ -188,11 +188,18 @@
 	background: var(--Neutral-7, #d3d4d8);
 }
 
+.jalur-box > img {
+	width: 24px;
+	overflow: hidden;
+}
+
 .jalur-bus-desc {
 	display: flex;
-	height: 25px;
+
 	align-items: center;
 	gap: 10px;
+
+	overflow: hidden;
 }
 .jalur-name {
 	display: flex;
@@ -201,7 +208,7 @@
 	gap: 5px;
 
 	border-radius: 5px;
-	border: 1px solid var(--Neutral-5, #283148);
+	border: 1px solid var(--neutral-5, #283148);
 	background: #f8f8fc;
 
 	min-width: 80px;
@@ -214,9 +221,188 @@
 	display: inline-block;
 	text-overflow: ellipsis;
 	width: 130px;
-	/* width: calc(50%); */
 }
 
+/* info bus section 3 */
+.aa {
+	display: flex;
+	flex-direction: column;
+}
+.info3-bus {
+	display: flex;
+	gap: 50px;
+}
+
+.jalur-operasional {
+	display: flex;
+
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: flex-start;
+	gap: 40px;
+	flex: 1 0 0;
+}
+
+.jalur-ops-head {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.jalur-ops-head > img {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.jalur-ops-title {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: flex-start;
+	gap: 20px;
+	/* align-self: stretch; */
+	/* width: 100%; */
+}
+
+.bus-line-container {
+	background: var(--neutral-8);
+
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.bus-line-text {
+	padding: 20px;
+	font-size: 14px;
+	color: var(--secondary-7);
+	margin: 5px 0;
+}
+
+.bus-line-head {
+	background: var(--Neutral-5, #283148);
+
+	padding: 20px;
+	display: flex;
+	/* width: 350px; */
+	align-items: center;
+	gap: 10px;
+}
+
+.bus-line-head > .text3 {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	color: var(--background-main, #f8f8fc);
+}
+
+.jadwal-operasional {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	/* align-items: flex-start; */
+	gap: 40px;
+	flex: 1 0 0;
+}
+
+.jadwal-ops-table {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	align-self: stretch;
+}
+
+.jadwal-ops-tarif {
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 20px;
+	align-self: stretch;
+
+	border-radius: 15px;
+	background: var(--neutral-5);
+	color: var(--background);
+}
+
+.jadwal-ops-tarif > .text2 > span {
+	color: var(--secondary-3);
+}
+
+table {
+	border-collapse: collapse;
+
+	/* display: flex; */
+	width: 100%;
+}
+
+th {
+	padding: 10px 20px;
+
+	text-align: left;
+
+	border-top: 0.5px solid var(--neutral-1);
+	border-bottom: 0.5px solid var(--neutral-1);
+	background: var(--neutral-5);
+
+	color: var(--background);
+	font-family: "Inter";
+	font-size: 14px;
+
+	font-weight: 700;
+}
+
+td {
+	padding: 10px 20px;
+
+	border-top: 0.5px solid var(--neutral-1);
+	border-bottom: 0.5px solid var(--neutral-1);
+	background: var(--neutral-8);
+
+	color: var(--neutral-5);
+
+	font-family: "Inter";
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.peta-jalur {
+	display: flex;
+	padding: 0px 200px;
+	flex-direction: column;
+	align-items: center;
+	gap: 40px;
+	align-self: stretch;
+
+	margin: 50px 0 0 0;
+}
+.peta-jlr-title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+
+	text-align: center;
+}
+
+.maps-container {
+	width: 100%;
+	height: 326px;
+}
+
+@media only screen and (max-width: 1150px) {
+	.info3-bus {
+		flex-direction: column;
+	}
+
+	.peta-jalur {
+		padding: 0;
+	}
+}
 @media only screen and (max-width: 1070px) {
 	.info2-jalur {
 		flex-direction: column;
@@ -233,10 +419,6 @@
 @media only screen and (max-width: 550px) {
 	.hide-in-mobile {
 		display: none;
-	}
-
-	.jalur-bus-dest {
-		width: 60px;
 	}
 }
 
@@ -259,26 +441,5 @@
 
 	.info2-jalur > img {
 		max-width: 200px;
-	}
-
-	.jalur-bus-desc {
-		height: unset;
-		min-height: 25px;
-	}
-
-	.jalur-bus-dest {
-		width: 150px;
-	}
-}
-
-@media only screen and (max-width: 440px) {
-	.jalur-bus-dest {
-		width: 100px;
-	}
-}
-
-@media only screen and (max-width: 390px) {
-	.jalur-bus-dest {
-		width: 70px;
 	}
 }
