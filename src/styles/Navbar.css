@@ -13,6 +13,10 @@
 	height: 59px;
 }
 
+.navbar.none {
+	display: none;
+}
+
 .left-navbar {
 	height: fit-content;
 }

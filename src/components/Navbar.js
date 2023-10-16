@@ -54,45 +54,40 @@ function Navbar() {
 
 	return (
 		<>
-			{
-				!isLoginView && (
-					<nav className="navbar">
-						<div className="left-navbar">
-							<img src={Logo} alt="logo" onClick={toHomePage} />
-						</div>
-						
-						<div className={`right-navbar ${isAdminView ? 'none' : ''}`}>
-							<Link to="/" id="/">
-								Beranda
-							</Link>
-							<Link to="/bus" id="/bus">
-								Bus
-							</Link>
-							<Link to="/rute" id="/rute">
-								Rute
-							</Link>
-							<Link to="/live" id="/live">
-								Live
-							</Link>
-							<Link to="/bantuan" id="/bantuan">
-								Bantuan
-							</Link>
-						</div>
-						<div className={`right-navbar ${!isAdminView ? 'none' : ''}`}>
-							<Link to="/admin/agensi" id="/admin/agensi">
-								Agensi
-							</Link>
-							<Link to="/admin/bus" id="/admin/bus">
-								Bus
-							</Link>
-							<button className="sign-out-btn" onClick={logout}>SIGN OUT</button>
-						</div>
-						<div className="right-navbar2">
-							<img src={NavbarMobile} alt="logo" />
-						</div>
-					</nav>
-				)
-			}
+			<nav className={`navbar ${isLoginView ? 'none' : ''}`}>
+				<div className="left-navbar">
+					<img src={Logo} alt="logo" onClick={toHomePage} />
+				</div>
+				<div className={`right-navbar ${isAdminView ? 'none' : ''}`}>
+					<Link to="/" id="/">
+						Beranda
+					</Link>
+					<Link to="/bus" id="/bus">
+						Bus
+					</Link>
+					<Link to="/rute" id="/rute">
+						Rute
+					</Link>
+					<Link to="/live" id="/live">
+						Live
+					</Link>
+					<Link to="/bantuan" id="/bantuan">
+						Bantuan
+					</Link>
+				</div>
+				<div className={`right-navbar ${!isAdminView ? 'none' : ''}`}>
+					<Link to="/admin/agensi" id="/admin/agensi">
+						Agensi
+					</Link>
+					<Link to="/admin/bus" id="/admin/bus">
+						Bus
+					</Link>
+					<button className="sign-out-btn" onClick={logout}>SIGN OUT</button>
+				</div>
+				<div className="right-navbar2">
+					<img src={NavbarMobile} alt="logo" />
+				</div>
+			</nav>
 		</>
 	);
 }
