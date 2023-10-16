@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import BusCustomMarkerIcon from "../../assets/BusCustomMarkerIcon.png"
 
 import "../../styles/Rute.css";
-import { GoogleMap, useLoadScript, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, DirectionsRenderer, Marker } from "@react-google-maps/api";
 
-function Maps( {routeData} ) {
+function Maps( {routeData, isMarker = false} ) {
 
     const [directionsResponse, setDirectionsResponse] = useState(null);
 
@@ -16,6 +17,11 @@ function Maps( {routeData} ) {
     function Map() {
         return <GoogleMap zoom={10} mapContainerClassName="map-container">
             {directionsResponse && <DirectionsRenderer directions={directionsResponse} />}
+            {
+                isMarker && (
+                    <Marker position={{ lat: -6.914744, lng: 107.609810 }} icon={BusCustomMarkerIcon} />
+                )
+            }
         </GoogleMap>
     }
 
@@ -42,9 +48,21 @@ function Maps( {routeData} ) {
         setDirectionsResponse(results);
     }
 
+    // const renderMarkers = (map, maps) => {
+    //     let marker = new maps.Marker({
+    //         position: { lat: -6.914744, lng: 107.609810 },
+    //         map,
+    //         title: "Hello World!",
+    //     });
+    // }
+
+    // const Marker = () => {
+    //     return <div className="marker">
+    //         <h1>Marker</h1>
+    //     </div>
+    // }
+
     useEffect(() => {
-        console.log(routeData);
-        console.log(isLoaded);
         if (isLoaded) {
             MapDirection();
         }

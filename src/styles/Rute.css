@@ -1,12 +1,15 @@
 main {
     display: flex;
     position: relative;
+    flex-direction: row;
+    overflow-x: hidden;
 }
 
 .route {
     width: 50%;
     max-width: 390px;
     position: fixed;
+    min-height: calc(100vh - 59px);
 }
 
 .second-container {
@@ -14,6 +17,39 @@ main {
     margin-left: min(50%, 390px);
     min-height: calc(100vh - 59px);
     display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 768px) {
+    .second-container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    main {
+        flex-direction: column;
+    }
+
+    .route {
+        width: 100%;
+        position: relative;
+        max-width: unset;
+        min-height: fit-content;
+    }
+
+    .route.reverse {
+        order: 2;
+    }
+
+    .second-container {
+        margin-left: 0;
+        min-height: fit-content;
+    }
+
+    .second-container.reverse {
+        order: 1;
+    }
 }
 
 .route-info {
@@ -24,10 +60,14 @@ main {
     display: flex;
     gap: 10px;
     margin: 20px;
+    flex-wrap: wrap;
+}
+
+.page-heading.center {
+    justify-content: center;
 }
 
 .page-heading h3 {
-    font-size: 36px;
     margin-bottom: 0;
     text-transform: uppercase;
 }
@@ -61,7 +101,6 @@ main {
 }
 
 .terminal-change-source p {
-    font-size: 14px;
     color: var(--secondary-7);
     margin: 5px 0;
 }
@@ -71,6 +110,33 @@ main {
     margin: 10px 0;
     font-weight: 600;
 }
+
+.terminal-change-select {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    color: var(--secondary-7);
+    font-weight: normal;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+.terminal-change-select::after {
+    display: none;
+}
+
+option {
+    color: var(--neutral-5);
+    font-weight: normal;
+    padding: 5px;
+    cursor: pointer;
+}
+
+option:hover {
+    background-color: red;
+}
+
 
 .terminal-change-source hr {
     width: 100%;
@@ -101,7 +167,6 @@ main {
 
 .route-name p {
     margin: 0;
-    font-size: 14px;
     color: var(--background);
 }
 
@@ -111,8 +176,10 @@ main {
     padding: 20px;
 
     border-bottom: 0.5px solid var(--neutral-1);
-    cursor: pointer;
-    /* border: 4px solid #DF321B; */
+}
+
+.route-detail.highlighted {
+    border: 4px solid var(--red);
 }
 
 .route-source {
@@ -144,8 +211,6 @@ main {
 
 .route-source p, .route-source-terminal-name p {
     margin: 0;
-    font-size: 14px;
-    /* font-weight: 600; */
     color: var(--neutral-5);
 }
 
@@ -184,6 +249,12 @@ main {
     height: calc(100vh - 59px);
 }
 
+@media only screen and (max-width: 480px) {
+    .route-detail-bus-trip {
+        height: fit-content;
+    }
+}
+
 .route-detail-container {
     background-color: var(--secondary-7);
     padding: 20px 0;
@@ -215,6 +286,17 @@ main {
     margin: 20px 0;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .bus-line {
+        flex: unset;
+        height: fit-content;
+    }
+
+    .bus-line.scroll {
+        height: 300px;
+    }
 }
 
 ::-webkit-scrollbar {
@@ -264,7 +346,6 @@ main {
 }
 
 .bus-line-item p {
-    font-size: 14px;
     color: var(--neutral-5);
     font-weight: 600;
 }
@@ -301,11 +382,9 @@ main {
 
 .trip-time .title p, .trip-near-schedule .title p {
     font-weight: bold;
-    font-size: 14px;
 }
 
 .trip-time-detail {
-    font-size: 14px;
     font-weight: bold;
     color: var(--secondary-3);
 }
@@ -316,7 +395,6 @@ main {
 }
 
 .trip-near-schedule-item p {
-    font-size: 14px;
     padding: 5px 10px;
     background-color: var(--secondary-7);
     color: var(--neutral-5);
@@ -331,7 +409,6 @@ main {
 }
 
 .trip-price-title {
-    font-size: 14px;
     font-weight: bold;
 }
 
@@ -346,6 +423,14 @@ main {
     flex: 1;
     background-color: var(--secondary-7);
     padding: 20px;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .date-picker-field {
+        height: fit-content;
+        flex: unset;
+    }
 }
 
 .date-picker-field form {
@@ -355,7 +440,6 @@ main {
 }
 
 .date-picker-field p {
-    font-size: 12px;
     color: red;
     text-align: center;
     margin: 0;
@@ -379,7 +463,6 @@ main {
     outline: none;
     border-radius: 5px;
     padding: 10px 20px;
-    font-size: 16px;
     color: var(--neutral-5);
     font-family: "Inter";
     font-weight: 600;
@@ -394,6 +477,7 @@ button {
     flex-direction: column;
     background-color: var(--secondary-7);
     flex: 1;
+    overflow-y: auto;
 }
 
 .schedule {
@@ -410,7 +494,6 @@ button {
 }
 
 .schedule-item p {
-    font-size: 14px;
     color: var(--neutral-2);
     margin: 0;
 }
@@ -428,12 +511,28 @@ button {
     font-weight: 500;
 }
 
+.schedule-item-price {
+    color: var(--secondary-2) !important;
+    font-weight: 900;
+}
+
 .font-bold {
     font-weight: bold;
 }
 
 .maps {
     width: 100%;
+    height: 100%;
+}
+
+.gmnoprint {
+    display: none;
+}
+
+@media only screen and (max-width: 480px) {
+    .maps {
+        height: 400px;
+    }
 }
 
 .maps img {
@@ -443,11 +542,25 @@ button {
 
 .seats-container {
     background-color: var(--primary-7);
-    padding: 40px;
+    padding: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: calc(100vw - 390px);
+    min-height: calc(100vh - 59px);
+    overflow-x: auto !important;
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-container {
+        width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-container {
+        width: 100%;
+    }
 }
 
 .seats-container p {
@@ -462,7 +575,7 @@ button {
 }
 
 .color-desc p {
-    font-size: 14px;
+    /* font-size: 14px; */
     color: var(--neutral-2);
     text-align: center;
 }
@@ -499,10 +612,11 @@ button {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 80%;
+    max-width: 500px;
 }
 
 .seats p {
-    font-size: 16px;
     font-weight: bold;
     color: var(--background);
 }
@@ -530,12 +644,44 @@ button {
     border-radius: 15px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .seats-row {
+        gap: 24px;
+    }
+
+    .seats-col {
+        gap: 24px;
+    }
+
+    .seat {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .seats-row {
+        gap: 24px;
+    }
+
+    .seats-col {
+        gap: 24px;
+    }
+
+    .seat {
+        width: 48px;
+        height: 48px;
+    }
+}
+
 .seat.chosen {
     background-color: var(--secondary-2);
+    cursor: pointer;
 }
 
 .seat.empty {
     background-color: var(--primary-2);
+    cursor: pointer;
 }
 
 .seat.driver {
@@ -579,10 +725,6 @@ button {
     justify-content: space-between;
 }
 
-.choose-schedule-date-price p {
-    font-size: 20px;
-}
-
 .select-seat {
     display: flex;
     align-items: center;
@@ -591,7 +733,6 @@ button {
 }
 
 .select-seat p {
-    font-size: 16px;
     color: var(--neutral-5);
 }
 
@@ -601,7 +742,6 @@ p.unavailable {
 
 .select-seat .sm-btn{
     width: fit-content;
-    font-size: 16px;
 }
 
 .bus-line-info {
@@ -612,4 +752,8 @@ p.unavailable {
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+.link-none {
+    text-decoration: none;
 }
