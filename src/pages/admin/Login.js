@@ -1,8 +1,16 @@
 import React from "react";
 import "../../styles/Admin.css"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
+
+	const navigate = useNavigate();
+
+	const login = () => {
+		localStorage.setItem('token', '123456abcdef');
+		navigate('/admin/agensi');
+	}
+
 	return (
 		<>
 			<main className="admin-main">
@@ -33,9 +41,7 @@ function AdminLogin() {
 							/>
 							{/* <span className="error-message">{errorMessages.name}</span> */}
 						</div>
-						<Link to="/admin/agensi" className="link-none">
-							<button>LOGIN</button>
-						</Link>
+						<button onClick={login}>LOGIN</button>
 					</form>
 				</div>
 			</main>

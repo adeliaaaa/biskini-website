@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PencilIconImage from "../../assets/PencilIcon.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function BusAdmin() {
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!localStorage.getItem('token')) {
+			navigate('/admin');
+		}
+	})
+
 	return (
 		<>
 			<main className="admin-main h-nav">
