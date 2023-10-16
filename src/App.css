@@ -75,6 +75,8 @@ h4 {
 	font-style: normal;
 	font-weight: 400;
 	line-height: 100%;
+
+	margin: 0;
 }
 
 h5 {
@@ -186,6 +188,19 @@ button {
 	line-height: normal;
 
 	cursor: pointer;
+}
+
+button.secondary {
+	background-color: var(--secondary-2);
+}
+
+button.small {
+	padding: 10px 20px;
+	border-radius: 10px;
+}
+
+button.small img {
+	width: 12px;
 }
 
 button:hover {

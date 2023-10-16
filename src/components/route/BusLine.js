@@ -4,11 +4,11 @@ import "../../styles/Rute.css";
 import BulletFilledIconImage from "../../assets/BulletFilledIcon.png";
 import BulletIconImage from "../../assets/BulletIcon.png";
 
-function BusLine({routeData}) {
+function BusLine({routeData, chooseSchedule}) {
     return (
-        <div className="bus-line">
+        <div className={`bus-line ${!chooseSchedule ? 'scroll' : ''}`}>
             {routeData?.map((route, idx) => (
-                <div className="bus-line-item">
+                <div key={idx} className="bus-line-item">
                     <img 
                         src={
                             (idx === 0 || idx === routeData.length - 1) 
@@ -18,7 +18,7 @@ function BusLine({routeData}) {
                         className="bullet-icon" 
                         alt="Bullet Icon" 
                     />
-                    <p>{route.name}</p>
+                    <p className="text3">{route.name}</p>
                 </div>
             ))}
         </div>
